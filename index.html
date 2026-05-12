@@ -1,0 +1,1800 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="meta_title">DevTools — Fejlesztői Eszköztár</title>
+  <meta name="description"
+    content="Ingyenes fejlesztői eszköztár JSON formázáshoz, XML/XML konvertáláshoz, Base64, URL kódolás, UUID generálás, JWT dekódolás, Regex tesztelés és Markdown előnézet.">
+  <meta name="keywords"
+    content="JSON formatter, XML converter, Base64, URL encode, UUID generator, JWT decoder, regex tester, markdown preview, developer tools">
+  <meta name="author" content="DevTools">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="DevTools — Fejlesztői Eszköztár">
+  <meta property="og:description"
+    content="Ingyenes fejlesztői eszköztár JSON formázáshoz, Base64, UUID, JWT és egyebekhez.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://devtoolsapp.com/">
+  <meta property="og:locale" content="hu_HU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DevTools — Fejlesztői Eszköztár">
+  <meta name="twitter:description"
+    content="Ingyenes fejlesztői eszköztár JSON formázáshoz, Base64, UUID, JWT és egyebekhez.">
+  <meta name="theme-color" content="#161b22">
+  <meta name="color-scheme" content="dark">
+  <link rel="canonical" href="https://devtoolsapp.com/" id="canonical-link">
+  <link rel="alternate" hreflang="hu" href="https://devtoolsapp.com/" id="hreflang-hu">
+  <link rel="alternate" hreflang="en" href="https://devtoolsapp.com/en/" id="hreflang-en">
+  <link rel="alternate" hreflang="x-default" href="https://devtoolsapp.com/" id="hreflang-xdefault">
+  <link rel="manifest"
+    href="data:application/json;base64,eyJuYW1lIjoiRGV2VG9vbHMiLCJzaG9ydF9uYW1lIjoiRGV2VG9vbHMiLCJzdGFydF91cmwiOiIuIiwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiIzBkMTExNyIsInRoZW1lX2NvbG9yIjoiIzE2MWIyMiJ9">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "DevTools — Fejlesztői Eszköztár",
+    "description": "Ingyenes fejlesztői eszköztár JSON formázáshoz, XML konvertáláshoz, Base64, URL kódolás, UUID generálás, JWT dekódolás, Regex tesztelés és Markdown előnézet.",
+    "url": "https://devtoolsapp.com/devtools.html",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "inLanguage": ["hu", "en"],
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "HUF"
+    }
+  }
+  </script>
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5325098230931001"
+     crossorigin="anonymous"></script>
+
+  <style>
+    /* ===========================================
+   1. CSS VÁLTOZÓK & ALAPOK
+   =========================================== */
+    :root {
+      --bg-body: #0d1117;
+      --bg-surface: #161b22;
+      --bg-surface-2: #21262d;
+      --border: #30363d;
+      --text-primary: #c9d1d9;
+      --text-secondary: #8b949e;
+      --accent: #58a6ff;
+      --accent-hover: #79b8ff;
+      --success: #238636;
+      --success-hover: #2ea043;
+      --danger: #da3633;
+      --danger-hover: #f85149;
+      --warning: #d29922;
+      --mark-bg: rgba(210, 153, 34, 0.15);
+      --mark-text: #e3b341;
+      --font-mono: "SFMono-Regular", "Consolas", "Liberation Mono", "Menlo", monospace;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --radius: 8px;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg-body);
+      color: var(--text-primary);
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ===========================================
+   2. FEJLÉC & HIRDETÉS
+   =========================================== */
+    .page-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 56px;
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      z-index: 100;
+      gap: 16px;
+    }
+
+    .page-header h1 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+    }
+
+    .header-ad {
+      margin-left: auto;
+    }
+
+    .ad-placeholder {
+      background: var(--bg-surface-2);
+      border: 1px dashed var(--border);
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      min-height: 64px;
+      border-radius: var(--radius);
+      width: 100%;
+      max-width: 728px;
+      margin: 0 auto;
+    }
+
+    .ad-header .ad-placeholder {
+      margin: 0 0 0 auto;
+      width: 468px;
+      height: 56px;
+      min-height: auto;
+    }
+
+    .ad-footer {
+      margin: 24px auto;
+    }
+
+    /* privacy badge */
+    .privacy-badge {
+      position: fixed;
+      top: 56px;
+      left: 0;
+      right: 0;
+      background: var(--bg-surface-2);
+      border-bottom: 1px solid var(--border);
+      padding: 6px 20px;
+      font-size: 0.75rem;
+      color: var(--success);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      z-index: 99;
+    }
+    .privacy-badge svg { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
+    @media (max-width: 768px) {
+      .privacy-badge { position: relative; top: 0; }
+    }
+
+    /* ===========================================
+   3. OLDALSÁV / NAVIGÁCIÓ
+   =========================================== */
+    .sidebar {
+      position: fixed;
+      top: 88px;
+      left: 0;
+      bottom: 0;
+      width: 64px;
+      background: var(--bg-surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 12px 0;
+      gap: 8px;
+      z-index: 90;
+    }
+
+    .nav-item {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: all .15s ease;
+      position: relative;
+    }
+
+    .nav-item:hover,
+    .nav-item.active {
+      background: var(--bg-surface-2);
+      color: var(--accent);
+    }
+
+    .nav-item svg {
+      width: 22px;
+      height: 22px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .nav-item .tooltip {
+      position: absolute;
+      left: 58px;
+      background: var(--bg-surface-2);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .15s;
+      color: var(--text-primary);
+    }
+
+    .nav-item:hover .tooltip {
+      opacity: 1;
+    }
+
+    /* ===========================================
+   4. FŐ TARTALOM
+   =========================================== */
+    main {
+      margin-left: 64px;
+      margin-top: 88px;
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+      min-height: calc(100vh - 56px);
+    }
+
+    .tool-section {
+      display: none;
+      max-width: 1100px;
+      margin: 0 auto 40px;
+      animation: fadeIn .25s ease;
+    }
+
+    .tool-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .tool-header {
+      margin-bottom: 16px;
+    }
+
+    .tool-header h2 {
+      font-size: 1.5rem;
+      margin-bottom: 4px;
+    }
+
+    .tool-header p {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+
+    .card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .card-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* ===========================================
+   5. ŰRLAP ELEMEK
+   =========================================== */
+    textarea,
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      background: var(--bg-body);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text-primary);
+      padding: 12px;
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      line-height: 1.5;
+      outline: none;
+      resize: vertical;
+      min-height: 120px;
+      transition: border-color .15s;
+    }
+
+    textarea:focus,
+    input:focus {
+      border-color: var(--accent);
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      min-height: auto;
+      resize: none;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    button,
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--bg-surface-2);
+      color: var(--text-primary);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .15s;
+      font-family: inherit;
+    }
+
+    button:hover,
+    .btn:hover {
+      background: var(--border);
+    }
+
+    button.primary,
+    .btn.primary {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    button.primary:hover,
+    .btn.primary:hover {
+      background: var(--accent-hover);
+    }
+
+    button.success,
+    .btn.success {
+      background: var(--success);
+      color: #fff;
+      border-color: var(--success);
+    }
+
+    button.success:hover,
+    .btn.success:hover {
+      background: var(--success-hover);
+    }
+
+    button.danger,
+    .btn.danger {
+      background: var(--danger);
+      color: #fff;
+      border-color: var(--danger);
+    }
+
+    button.danger:hover,
+    .btn.danger:hover {
+      background: var(--danger-hover);
+    }
+
+    button:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+    }
+
+    .icon-btn {
+      padding: 8px;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+    }
+
+    .icon-btn:hover {
+      color: var(--text-primary);
+      background: var(--bg-surface-2);
+    }
+
+    /* output area */
+    pre,
+    .output-box {
+      background: var(--bg-body);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px;
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      line-height: 1.6;
+      overflow-x: auto;
+      max-height: 520px;
+      position: relative;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .output-box {
+      white-space: normal;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: var(--bg-surface-2);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 6px;
+      z-index: 5;
+      cursor: pointer;
+    }
+
+    .copy-btn:hover {
+      color: var(--text-primary);
+      background: var(--border);
+    }
+
+    /* JSON highlight */
+    .json-key {
+      color: #7ee787;
+    }
+
+    .json-str {
+      color: #a5d6ff;
+    }
+
+    .json-num {
+      color: #79c0ff;
+    }
+
+    .json-bool {
+      color: #ff7b72;
+    }
+
+    .json-null {
+      color: #ff7b72;
+    }
+
+    /* regex highlight */
+    mark.match {
+      background: var(--mark-bg);
+      color: var(--mark-text);
+      border-radius: 3px;
+      padding: 0 2px;
+    }
+
+    /* JWT */
+    .jwt-box {
+      margin-bottom: 12px;
+    }
+
+    .jwt-box h4 {
+      font-size: 0.8125rem;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+
+    /* Markdown preview */
+    .md-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .md-preview {
+      background: #ffffff;
+      color: #1f2328;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 20px;
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      overflow-y: auto;
+      max-height: 600px;
+    }
+
+    .md-preview h1,
+    .md-preview h2,
+    .md-preview h3,
+    .md-preview h4 {
+      margin-top: 24px;
+      margin-bottom: 12px;
+      line-height: 1.3;
+      border-bottom: 1px solid #d0d7de;
+      padding-bottom: 6px;
+    }
+
+    .md-preview h1 {
+      font-size: 2em;
+      border-bottom-width: 1px;
+    }
+
+    .md-preview h2 {
+      font-size: 1.5em;
+    }
+
+    .md-preview p {
+      margin-bottom: 12px;
+    }
+
+    .md-preview ul,
+    .md-preview ol {
+      margin-bottom: 12px;
+      padding-left: 24px;
+    }
+
+    .md-preview li {
+      margin-bottom: 4px;
+    }
+
+    .md-preview code {
+      background: rgba(175, 184, 193, 0.2);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.875em;
+    }
+
+    .md-preview pre {
+      background: #f6f8fa;
+      padding: 12px;
+      border-radius: 6px;
+      overflow-x: auto;
+      border: 1px solid #d0d7de;
+    }
+
+    .md-preview pre code {
+      background: transparent;
+      padding: 0;
+    }
+
+    .md-preview blockquote {
+      border-left: 4px solid #d0d7de;
+      padding-left: 12px;
+      color: #57606a;
+      margin-bottom: 12px;
+    }
+
+    .md-preview a {
+      color: #0969da;
+    }
+
+    .md-preview img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+    }
+
+    .md-preview hr {
+      border: 0;
+      border-top: 1px solid #d0d7de;
+      margin: 16px 0;
+    }
+
+    /* flags */
+    .flag-box {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin: 8px 0;
+    }
+
+    .flag-box label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+
+    /* toast */
+    #toast-container {
+      position: fixed;
+      top: 72px;
+      right: 20px;
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      pointer-events: none;
+    }
+
+    .toast {
+      pointer-events: auto;
+      background: var(--bg-surface-2);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 10px 16px;
+      border-radius: var(--radius);
+      font-size: 0.8125rem;
+      box-shadow: var(--shadow);
+      animation: toastIn .3s ease;
+      max-width: 320px;
+    }
+
+    .toast.error {
+      border-left: 4px solid var(--danger);
+    }
+
+    .toast.success {
+      border-left: 4px solid var(--success);
+    }
+
+    .toast.info {
+      border-left: 4px solid var(--accent);
+    }
+
+    @keyframes toastIn {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    /* ===========================================
+   6. RESZPONZÍV
+   =========================================== */
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+        height: auto;
+        overflow: auto;
+      }
+
+      .page-header {
+        height: auto;
+        flex-wrap: wrap;
+        padding: 10px;
+      }
+
+      .header-ad {
+        display: none;
+      }
+
+      .sidebar {
+        position: sticky;
+        top: 0;
+        flex-direction: row;
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        overflow-x: auto;
+        padding: 8px;
+        gap: 6px;
+        z-index: 95;
+      }
+
+      .nav-item {
+        width: 44px;
+        height: 44px;
+        flex-shrink: 0;
+      }
+
+      .nav-item .tooltip {
+        display: none;
+      }
+
+      main {
+        margin-left: 0;
+        margin-top: 0;
+        padding: 16px;
+        min-height: auto;
+      }
+
+      .md-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .ad-placeholder {
+        max-width: 100%;
+      }
+    }
+
+    /* number input small */
+    input[type="number"] {
+      min-height: auto;
+      width: 80px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <noscript>
+    <div style="padding:20px; background:#161b22; color:#c9d1d9; border-bottom:1px solid #30363d;">
+      <h2>DevTools — Fejlesztői Eszköztár</h2>
+      <p>Az oldal JavaScript-et használ a működéséhez. Kérlek engedélyezd a JavaScript-et a böngésződben, vagy használd az alábbi eszközöket:</p>
+      <ul>
+        <li><a href="https://jsonformatter.org/" target="_blank" rel="noopener">JSON Formatter</a></li>
+        <li><a href="https://www.base64decode.org/" target="_blank" rel="noopener">Base64 Decode</a></li>
+        <li><a href="https://www.url-encode-decode.com/" target="_blank" rel="noopener">URL Encode/Decode</a></li>
+        <li><a href="https://www.uuidgenerator.net/" target="_blank" rel="noopener">UUID Generator</a></li>
+        <li><a href="https://jwt.io/" target="_blank" rel="noopener">JWT Decoder</a></li>
+        <li><a href="https://regex101.com/" target="_blank" rel="noopener">Regex Tester</a></li>
+      </ul>
+    </div>
+  </noscript>
+
+  <header class="page-header">
+    <h1 data-i18n="app_title">DevTools</h1>
+    <div class="lang-switch" style="display:flex;gap:8px;align-items:center;margin-left:auto;">
+      <button id="lang-hu" class="btn" style="padding:4px 10px;font-size:0.75rem;" onclick="I18n.setLang('hu')" data-i18n="lang_hu">HU</button>
+      <button id="lang-en" class="btn" style="padding:4px 10px;font-size:0.75rem;" onclick="I18n.setLang('en')" data-i18n="lang_en">EN</button>
+    </div>
+    <div class="header-ad">
+      <div class="ad-placeholder">Hirdetés (AdSense)</div>
+    </div>
+  </header>
+
+  <div class="privacy-badge">
+    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <span data-i18n="privacy_text">100% kliensoldali — az adataid nem hagyják el a böngésződet</span>
+  </div>
+
+  <nav class="sidebar" aria-label="Eszközök">
+  <a href="/jsonformatter" class="nav-item active" data-tool="jsonformatter" title="JSON Formatter">
+      <svg viewBox="0 0 24 24">
+        <polyline points="16 18 22 12 16 6"></polyline>
+        <polyline points="8 6 2 12 8 18"></polyline>
+      </svg>
+      <span class="tooltip" data-i18n="nav_jsonformatter">JSON Formatter</span>
+    </a>
+    <a href="/jsonxml" class="nav-item" data-tool="jsonxml" title="JSON ↔ XML">
+      <svg viewBox="0 0 24 24">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+        <polyline points="14 2 14 8 20 8"></polyline>
+        <line x1="12" y1="18" x2="12" y2="12"></line>
+        <line x1="9" y1="15" x2="15" y2="15"></line>
+      </svg>
+      <span class="tooltip" data-i18n="nav_jsonxml">JSON ↔ XML</span>
+    </a>
+    <a href="/base64" class="nav-item" data-tool="base64" title="Base64">
+      <svg viewBox="0 0 24 24">
+        <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+        <rect x="9" y="9" width="6" height="6"></rect>
+        <line x1="9" y1="1" x2="9" y2="4"></line>
+        <line x1="15" y1="1" x2="15" y2="4"></line>
+        <line x1="9" y1="20" x2="9" y2="23"></line>
+        <line x1="15" y1="20" x2="15" y2="23"></line>
+        <line x1="20" y1="9" x2="23" y2="9"></line>
+        <line x1="20" y1="14" x2="23" y2="14"></line>
+        <line x1="1" y1="9" x2="4" y2="9"></line>
+        <line x1="1" y1="14" x2="4" y2="14"></line>
+      </svg>
+      <span class="tooltip" data-i18n="nav_base64">Base64</span>
+    </a>
+    <a href="/urlcodec" class="nav-item" data-tool="urlcodec" title="URL Encode / Decode">
+      <svg viewBox="0 0 24 24">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+      </svg>
+      <span class="tooltip" data-i18n="nav_urlcodec">URL Encode / Decode</span>
+    </a>
+    <a href="/uuid" data-tool="uuid" class="nav-item" title="UUID v4">
+      <svg viewBox="0 0 24 24">
+        <line x1="12" y1="1" x2="12" y2="23"></line>
+        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+      </svg>
+      <span class="tooltip" data-i18n="nav_uuid">UUID v4</span>
+    </a>
+    <a href="/jwt" data-tool="jwt" class="nav-item" title="JWT Decoder">
+      <svg viewBox="0 0 24 24">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+      </svg>
+      <span class="tooltip" data-i18n="nav_jwt">JWT Decoder</span>
+    </a>
+    <a href="/regex" data-tool="regex" class="nav-item" title="Regex Tester">
+      <svg viewBox="0 0 24 24">
+        <path d="M17.5 19c0-1.7-1.3-3-3-3c-1.1 0-2 .6-2.6 1.5"></path>
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="12" y1="8" x2="12" y2="12"></line>
+        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+      </svg>
+      <span class="tooltip" data-i18n="nav_regex">Regex Tester</span>
+    </a>
+    <a href="/markdown" data-tool="markdown" class="nav-item" title="Markdown Preview">
+      <svg viewBox="0 0 24 24">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+        <polyline points="14 2 14 8 20 8"></polyline>
+        <line x1="16" y1="13" x2="8" y2="13"></line>
+        <line x1="16" y1="17" x2="8" y2="17"></line>
+        <polyline points="10 9 9 9 8 9"></polyline>
+      </svg>
+      <span class="tooltip" data-i18n="nav_markdown">Markdown Preview</span>
+    </a>
+  </nav>
+
+  <main>
+
+    <!-- ===========================================
+     ESZKÖZ: JSON FORMATTER & VALIDATOR
+     =========================================== -->
+    <section id="tool-jsonformatter" class="tool-section active">
+      <header class="tool-header">
+        <h2 data-i18n="jsonformatter_title">JSON Formatter & Validator</h2>
+        <p data-i18n="jsonformatter_desc">Illeszd be a JSON-t, majd formázd szépen vagy ellenőrizd a szintaxist. A hibák sor számmal jelennek meg.</p>
+      </header>
+      <div class="card">
+        <div class="card-title" data-i18n="card_input">Input</div>
+        <textarea id="jf-input" placeholder="Illeszd be a JSON-t ide..." data-i18n-placeholder="ph_json"></textarea>
+        <div class="btn-row">
+          <button class="primary run-btn" onclick="JSONFormatter.format()" data-i18n="btn_format">Formázás</button>
+          <button class="btn" onclick="JSONFormatter.minify()" data-i18n="btn_minify">Minify</button>
+          <button class="btn" onclick="JSONFormatter.validate()" data-i18n="btn_validate">Validálás</button>
+          <button class="danger" onclick="JSONFormatter.clear()" data-i18n="btn_clear">Clear</button>
+        </div>
+      </div>
+      <div class="card" id="jf-output-wrap" style="display:none">
+        <div class="card-title" data-i18n="card_output">Output</div>
+        <pre id="jf-output"><code></code></pre>
+        <button class="copy-btn" onclick="Utils.copyFrom('jf-output')" data-i18n="btn_copy">Másolás</button>
+      </div>
+      <div class="card" id="jf-error-wrap" style="display:none">
+        <div class="card-title" style="color:var(--danger)" data-i18n="card_error">Hiba</div>
+        <pre id="jf-error" style="color:var(--danger)"></pre>
+      </div>
+    </section>
+
+    <!-- ===========================================
+     ESZKÖZ: JSON ↔ XML CONVERTER
+     =========================================== -->
+    <section id="tool-jsonxml" class="tool-section">
+      <header class="tool-header">
+        <h2 data-i18n="jsonxml_title">JSON ↔ XML Converter</h2>
+        <p data-i18n="jsonxml_desc">Konvertálj JSON-t XML-be és fordítva. Figyelem: az XML attribútumok nem kerülnek külön kezelésre.</p>
+      </header>
+      <div class="card">
+        <div class="card-title" data-i18n="card_input">Input</div>
+        <textarea id="jx-input" placeholder="JSON vagy XML..." data-i18n-placeholder="ph_jsonxml"></textarea>
+        <div class="btn-row">
+          <button class="primary run-btn" onclick="JsonXml.jsonToXml()" data-i18n="btn_json_to_xml">JSON → XML</button>
+          <button class="primary" onclick="JsonXml.xmlToJson()" data-i18n="btn_xml_to_json">XML → JSON</button>
+          <button class="danger" onclick="JsonXml.clear()" data-i18n="btn_clear">Clear</button>
+        </div>
+      </div>
+      <div class="card" id="jx-output-wrap" style="display:none">
+        <div class="card-title" data-i18n="card_output">Output</div>
+        <pre id="jx-output"></pre>
+        <button class="copy-btn" onclick="Utils.copyFrom('jx-output')" data-i18n="btn_copy">Másolás</button>
+      </div>
+    </section>
+
+    <!-- ===========================================
+     ESZKÖZ: BASE64 ENCODE / DECODE
+     =========================================== -->
+    <section id="tool-base64" class="tool-section">
+      <header class="tool-header">
+        <h2 data-i18n="base64_title">Base64 Encode / Decode</h2>
+        <p data-i18n="base64_desc">Szöveg és fájl alapú Base64 kódolás és dekódolás.</p>
+      </header>
+      <div class="card">
+        <div class="card-title" data-i18n="card_text">Szöveg</div>
+        <textarea id="b64-input" placeholder="Szöveg..." data-i18n-placeholder="ph_text" style="min-height:80px"></textarea>
+        <div class="btn-row">
+          <button class="primary run-btn" onclick="Base64.encodeText()" data-i18n="btn_encode">Encode</button>
+          <button class="primary" onclick="Base64.decodeText()" data-i18n="btn_decode">Decode</button>
+          <button class="danger" onclick="Base64.clearText()" data-i18n="btn_clear">Clear</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title" data-i18n="card_file_encode">Fájl (Encode)</div>
+        <input type="file" id="b64-file" style="color:var(--text-secondary); margin-bottom:8px;">
+        <div class="btn-row">
+          <button class="primary" onclick="Base64.encodeFile()" data-i18n="btn_file_to_b64">Fájl Base64-re</button>
+          <button class="danger" onclick="Base64.clearFile()" data-i18n="btn_clear">Clear</button>
+        </div>
+        <pre id="b64-file-meta"
+          style="margin-top:10px; border:none; padding:0; background:transparent; color:var(--text-secondary); font-size:0.75rem; display:none"></pre>
+      </div>
+      <div class="card" id="b64-output-wrap" style="display:none">
+        <div class="card-title" data-i18n="card_result">Eredmény</div>
+        <pre id="b64-output"></pre>
+        <button class="copy-btn" onclick="Utils.copyFrom('b64-output')" data-i18n="btn_copy">Másolás</button>
+      </div>
+    </section>
+
+    <!-- ===========================================
+     ESZKÖZ: URL ENCODE / DECODE
+     =========================================== -->
+    <section id="tool-urlcodec" class="tool-section">
+      <header class="tool-header">
+        <h2 data-i18n="urlcodec_title">URL Encode / Decode</h2>
+        <p data-i18n="urlcodec_desc">Kódold vagy dekódold az URL-eket és paramétereket.</p>
+      </header>
+      <div class="card">
+        <div class="card-title" data-i18n="card_text">Szöveg</div>
+        <textarea id="url-input" placeholder="Szöveg..." data-i18n-placeholder="ph_text" style="min-height:80px"></textarea>
+        <div class="btn-row">
+          <button class="primary run-btn" onclick="UrlCodec.encode()" data-i18n="btn_encode">Encode</button>
+          <button class="primary" onclick="UrlCodec.decode()" data-i18n="btn_decode">Decode</button>
+          <button class="danger" onclick="UrlCodec.clear()" data-i18n="btn_clear">Clear</button>
+        </div>
+      </div>
+      <div class="card" id="url-output-wrap" style="display:none">
+        <div class="card-title" data-i18n="card_result">Eredmény</div>
+        <pre id="url-output"></pre>
+        <button class="copy-btn" onclick="Utils.copyFrom('url-output')" data-i18n="btn_copy">Másolás</button>
+      </div>
+    </section>
+
+    <!-- ===========================================
+     ESZKÖZ: UUID v4 GENERATOR
+     =========================================== -->
+    <section id="tool-uuid" class="tool-section">
+      <header class="tool-header">
+        <h2 data-i18n="uuid_title">UUID v4 Generator</h2>
+        <p data-i18n="uuid_desc">Generálj egyszerre több véletlenszerű UUID-t.</p>
+      </header>
+      <div class="card">
+        <div class="card-title" data-i18n="card_settings">Beállítások</div>
+        <div class="btn-row" style="align-items:center;">
+          <label style="color:var(--text-secondary); font-size:0.8125rem;" data-i18n="label_quantity">Mennyiség: <input type="number"
+              id="uuid-count" value="5" min="1" max="100" style="width:70px; margin-left:6px;"></label>
+          <button class="primary run-btn" onclick="UuidGen.generate()" data-i18n="btn_generate">Generálás</button>
+          <button class="btn" onclick="UuidGen.copyAll()" data-i18n="btn_copy_all">Összes másolása</button>
+          <button class="danger" onclick="UuidGen.clear()" data-i18n="btn_clear">Clear</button>
+        </div>
+      </div>
+      <div class="card" id="uuid-output-wrap" style="display:none">
+        <div class="card-title" data-i18n="card_result">Eredmény</div>
+        <div id="uuid-output"></div>
+      </div>
+    </section>
+
+    <!-- ===========================================
+     ESZKÖZ: JWT DECODER
+     =========================================== -->
+    <section id="tool-jwt" class="tool-section">
+      <header class="tool-header">
+        <h2 data-i18n="jwt_title">JWT Decoder</h2>
+        <p data-i18n="jwt_desc">Decodold a JSON Web Token header és payload részét. A szignatúra ellenőrzés nélkül jelenik meg.</p>
+      </header>
+      <div class="card">
+        <div class="card-title" data-i18n="card_token">Token</div>
+        <textarea id="jwt-input" placeholder="Illeszd be a JWT-t..." data-i18n-placeholder="ph_jwt"></textarea>
+        <div class="btn-row">
+          <button class="primary run-btn" onclick="JwtTool.decode()" data-i18n="btn_decode_jwt">Decodolás</button>
+          <button class="danger" onclick="JwtTool.clear()" data-i18n="btn_clear">Clear</button>
+        </div>
+      </div>
+      <div id="jwt-output-wrap" style="display:none">
+        <div class="card jwt-box">
+          <h4>Header</h4>
+          <pre id="jwt-header"></pre>
+          <button class="copy-btn" onclick="Utils.copyFrom('jwt-header')" data-i18n="btn_copy">Másolás</button>
+        </div>
+        <div class="card jwt-box">
+          <h4>Payload</h4>
+          <pre id="jwt-payload"></pre>
+          <button class="copy-btn" onclick="Utils.copyFrom('jwt-payload')" data-i18n="btn_copy">Másolás</button>
+        </div>
+        <div class="card jwt-box">
+          <h4>Signature</h4>
+          <pre id="jwt-signature" style="word-break:break-all;"></pre>
+          <button class="copy-btn" onclick="Utils.copyFrom('jwt-signature')" data-i18n="btn_copy">Másolás</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===========================================
+     ESZKÖZ: REGEX TESTER
+     =========================================== -->
+    <section id="tool-regex" class="tool-section">
+      <header class="tool-header">
+        <h2 data-i18n="regex_title">Regex Tester</h2>
+        <p data-i18n="regex_desc">Teszteld a reguláris kifejezéseidet valós időben.</p>
+      </header>
+      <div class="card">
+        <div class="card-title" data-i18n="card_pattern">Minta (Pattern)</div>
+        <input type="text" id="rx-pattern" placeholder="pl. [A-Za-z0-9]+" data-i18n-placeholder="ph_pattern" style="min-height:auto; margin-bottom:8px;">
+        <div class="flag-box">
+          <label><input type="checkbox" id="rx-g" checked> g (global)</label>
+          <label><input type="checkbox" id="rx-i"> i (case-insensitive)</label>
+          <label><input type="checkbox" id="rx-m"> m (multiline)</label>
+          <label><input type="checkbox" id="rx-s"> s (dotAll)</label>
+          <label><input type="checkbox" id="rx-u"> u (unicode)</label>
+          <label><input type="checkbox" id="rx-y"> y (sticky)</label>
+        </div>
+        <div class="card-title" style="margin-top:12px;" data-i18n="card_test_text">Tesztszöveg</div>
+        <textarea id="rx-text" placeholder="Ide írd a szöveget..." data-i18n-placeholder="ph_text_here"></textarea>
+        <div class="btn-row">
+          <button class="primary run-btn" onclick="RegexTool.run()" data-i18n="btn_run_test">Teszt futtatása</button>
+          <button class="danger" onclick="RegexTool.clear()" data-i18n="btn_clear">Clear</button>
+        </div>
+      </div>
+      <div class="card" id="rx-output-wrap" style="display:none">
+        <div class="card-title" data-i18n="card_highlight">Kiemelés</div>
+        <pre id="rx-highlight" style="white-space:pre-wrap; word-break:break-word;"></pre>
+      </div>
+      <div class="card" id="rx-details-wrap" style="display:none">
+        <div class="card-title" data-i18n="card_matches">Találatok</div>
+        <div id="rx-details" style="font-size:0.8125rem;"></div>
+      </div>
+    </section>
+
+    <!-- ===========================================
+     ESZKÖZ: MARKDOWN PREVIEW
+     =========================================== -->
+    <section id="tool-markdown" class="tool-section">
+      <header class="tool-header">
+        <h2 data-i18n="markdown_title">Markdown Preview</h2>
+        <p data-i18n="markdown_desc">Valós idejű, GitHub-stílusú Markdown előnézet.</p>
+      </header>
+      <div class="card">
+        <div class="md-wrap">
+          <div>
+            <div class="card-title" data-i18n="card_input">Input</div>
+            <textarea id="md-input" placeholder="Írj Markdown-t..." data-i18n-placeholder="ph_markdown" style="min-height:380px;"></textarea>
+            <div class="btn-row">
+              <button class="danger" onclick="MarkdownTool.clear()" data-i18n="btn_clear">Clear</button>
+            </div>
+          </div>
+          <div>
+            <div class="card-title" data-i18n="card_preview">Előnézet</div>
+            <div id="md-preview" class="md-preview"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ad-placeholder ad-footer">Hirdetés (AdSense)</div>
+
+  </main>
+
+  <div id="toast-container"></div>
+
+  <script>
+    /* =============================================================
+       UTILS – Közös segédfüggvények (clipboard, toast, hash nav)
+       ============================================================= */
+    const Utils = {
+      escapeHtml(str) {
+        return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      },
+
+      async copyText(text) {
+        try {
+          await navigator.clipboard.writeText(text);
+          Utils.toast(I18n.t('toast_copy'), 'success');
+        } catch (e) {
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          Utils.toast(I18n.t('toast_copy'), 'success');
+        }
+      },
+
+      copyFrom(id) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        Utils.copyText(el.textContent || el.innerText || el.value || '');
+      },
+
+      toast(msg, type = 'info', duration = 3000) {
+        const container = document.getElementById('toast-container');
+        const div = document.createElement('div');
+        div.className = 'toast ' + type;
+        div.textContent = msg;
+        container.appendChild(div);
+        setTimeout(() => {
+          div.style.transition = 'all .3s';
+          div.style.opacity = '0';
+          div.style.transform = 'translateX(100%)';
+          setTimeout(() => div.remove(), 300);
+        }, duration);
+      },
+
+      autoResize(el) {
+        el.style.height = 'auto';
+        el.style.height = Math.max(el.scrollHeight, 120) + 'px';
+      },
+
+      setupAutoResize(query) {
+        document.querySelectorAll(query).forEach(ta => {
+          ta.addEventListener('input', function () { Utils.autoResize(this); });
+        });
+      },
+
+      showTool(id) {
+        localStorage.setItem('devtools-active-tool', id);
+        document.querySelectorAll('.tool-section').forEach(s => s.classList.remove('active'));
+        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+        const sec = document.getElementById(id);
+        if (sec) sec.classList.add('active');
+        const pathMap = {
+          'tool-jsonformatter': '/jsonformatter',
+          'tool-jsonxml': '/jsonxml',
+          'tool-base64': '/base64',
+          'tool-urlcodec': '/urlcodec',
+          'tool-uuid': '/uuid',
+          'tool-jwt': '/jwt',
+          'tool-regex': '/regex',
+          'tool-markdown': '/markdown'
+        };
+        const nav = document.querySelector('.nav-item[href="' + pathMap[id] + '"]');
+        if (nav) nav.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        this.updateMeta(id);
+      },
+
+      updateMeta(id) {
+        const pathMap = {
+          'tool-jsonformatter': '/jsonformatter',
+          'tool-jsonxml': '/jsonxml',
+          'tool-base64': '/base64',
+          'tool-urlcodec': '/urlcodec',
+          'tool-uuid': '/uuid',
+          'tool-jwt': '/jwt',
+          'tool-regex': '/regex',
+          'tool-markdown': '/markdown'
+        };
+        const basePath = pathMap[id] || '/jsonformatter';
+        const langPrefix = I18n.lang === 'en' ? '/en' : '';
+        const currentUrl = 'https://devtoolsapp.com' + langPrefix + basePath;
+        const huUrl = 'https://devtoolsapp.com' + basePath;
+        const enUrl = 'https://devtoolsapp.com/en' + basePath;
+
+        const titles = {
+          'tool-jsonformatter': 'JSON Formatter & Validator — DevTools',
+          'tool-jsonxml': 'JSON ↔ XML Converter — DevTools',
+          'tool-base64': 'Base64 Encode / Decode — DevTools',
+          'tool-urlcodec': 'URL Encode / Decode — DevTools',
+          'tool-uuid': 'UUID v4 Generator — DevTools',
+          'tool-jwt': 'JWT Decoder — DevTools',
+          'tool-regex': 'Regex Tester — DevTools',
+          'tool-markdown': 'Markdown Preview — DevTools'
+        };
+        const descs = {
+          'tool-jsonformatter': 'Formázd és validáld a JSON-t online. Sor számmal jelzett hibák, szintaxis kiemelés.',
+          'tool-jsonxml': 'Konvertálj JSON-t XML-be és fordítva. Gyors, böngészőben futó konvertáló.',
+          'tool-base64': 'Base64 kódolás és dekódolás szövegre és fájlokra.',
+          'tool-urlcodec': 'URL encode és decode online. Kódold vagy dekódold az URL paramétereket.',
+          'tool-uuid': 'Generálj véletlenszerű UUID v4 azonosítókat. Másold a vágólapra egy kattintással.',
+          'tool-jwt': 'Decodold a JSON Web Token header és payload részét. JWT elemző fejlesztőknek.',
+          'tool-regex': 'Teszteld a reguláris kifejezéseidet valós időben. Találatok kiemelése.',
+          'tool-markdown': 'Valós idejű Markdown előnézet. GitHub-stílusú renderelés.'
+        };
+        const t = titles[id] || 'DevTools — Fejlesztői Eszköztár';
+        const d = descs[id] || 'Ingyenes fejlesztői eszköztár JSON formázáshoz, Base64, UUID, JWT és egyebekhez.';
+        document.title = t;
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) metaDesc.setAttribute('content', d);
+        const ogTitle = document.querySelector('meta[property="og:title"]');
+        if (ogTitle) ogTitle.setAttribute('content', t);
+        const ogDesc = document.querySelector('meta[property="og:description"]');
+        if (ogDesc) ogDesc.setAttribute('content', d);
+        const ogUrl = document.querySelector('meta[property="og:url"]');
+        if (ogUrl) ogUrl.setAttribute('content', currentUrl);
+        const twTitle = document.querySelector('meta[name="twitter:title"]');
+        if (twTitle) twTitle.setAttribute('content', t);
+        const twDesc = document.querySelector('meta[name="twitter:description"]');
+        if (twDesc) twDesc.setAttribute('content', d);
+
+        // Update canonical and hreflang
+        const canonical = document.getElementById('canonical-link');
+        if (canonical) canonical.setAttribute('href', currentUrl);
+        const hreflangHu = document.getElementById('hreflang-hu');
+        if (hreflangHu) hreflangHu.setAttribute('href', huUrl);
+        const hreflangEn = document.getElementById('hreflang-en');
+        if (hreflangEn) hreflangEn.setAttribute('href', enUrl);
+        const hreflangX = document.getElementById('hreflang-xdefault');
+        if (hreflangX) hreflangX.setAttribute('href', huUrl);
+
+        // Update JSON-LD
+        const jsonLd = document.querySelector('script[type="application/ld+json"]');
+        if (jsonLd) {
+          try {
+            const data = JSON.parse(jsonLd.textContent);
+            data.name = t;
+            data.description = d;
+            data.url = currentUrl;
+            jsonLd.textContent = JSON.stringify(data, null, 2);
+          } catch (e) {}
+        }
+      },
+
+      initPathNav() {
+        const pathToId = {
+          '/jsonformatter': 'tool-jsonformatter',
+          '/jsonxml': 'tool-jsonxml',
+          '/base64': 'tool-base64',
+          '/urlcodec': 'tool-urlcodec',
+          '/uuid': 'tool-uuid',
+          '/jwt': 'tool-jwt',
+          '/regex': 'tool-regex',
+          '/markdown': 'tool-markdown'
+        };
+        const route = function () {
+          const p = window.location.pathname;
+          const id = pathToId[p] || 'tool-jsonformatter';
+          Utils.showTool(id);
+        };
+        window.addEventListener('popstate', route);
+        // Intercept nav clicks
+        document.querySelectorAll('.nav-item').forEach(function (el) {
+          el.addEventListener('click', function (e) {
+            let href = el.getAttribute('href');
+            if (href && href.startsWith('/')) {
+              e.preventDefault();
+              // Respect current language
+              if (I18n.lang === 'en' && !href.startsWith('/en/')) {
+                href = '/en' + href;
+              }
+              try { history.pushState(null, '', href); } catch (err) {}
+              const baseHref = href.replace('/en/', '/');
+              const id = pathToId[baseHref] || 'tool-jsonformatter';
+              Utils.showTool(id);
+            }
+          });
+        });
+        route();
+      },
+
+      initKeyboard() {
+        document.addEventListener('keydown', function (e) {
+          if (e.ctrlKey && e.key === 'Enter') {
+            const active = document.querySelector('.tool-section.active');
+            if (!active) return;
+            const btn = active.querySelector('.run-btn');
+            if (btn) { e.preventDefault(); btn.click(); }
+          }
+        });
+      }
+    };
+
+    /* =============================================================
+       JSON FORMATTER & VALIDATOR
+       ============================================================= */
+    const JSONFormatter = {
+      input: function () { return document.getElementById('jf-input').value; },
+      outWrap: function () { return document.getElementById('jf-output-wrap'); },
+      errWrap: function () { return document.getElementById('jf-error-wrap'); },
+
+      format: function () {
+        const raw = this.input().trim();
+        if (!raw) return Utils.toast(I18n.t('toast_empty'), 'error');
+        try {
+          const obj = JSON.parse(raw);
+          const formatted = JSON.stringify(obj, null, 2);
+          document.getElementById('jf-output').innerHTML = '<code>' + this.highlight(formatted) + '</code>';
+          this.outWrap().style.display = 'block';
+          this.errWrap().style.display = 'none';
+        } catch (e) {
+          this.showError(e, raw);
+        }
+      },
+
+      minify: function () {
+        const raw = this.input().trim();
+        if (!raw) return Utils.toast(I18n.t('toast_empty'), 'error');
+        try {
+          const obj = JSON.parse(raw);
+          const min = JSON.stringify(obj);
+          document.getElementById('jf-output').textContent = min;
+          this.outWrap().style.display = 'block';
+          this.errWrap().style.display = 'none';
+        } catch (e) {
+          this.showError(e, raw);
+        }
+      },
+
+      validate: function () {
+        const raw = this.input().trim();
+        if (!raw) return Utils.toast(I18n.t('toast_empty'), 'error');
+        try {
+          JSON.parse(raw);
+          Utils.toast(I18n.t('toast_valid_json'), 'success');
+          this.errWrap().style.display = 'none';
+        } catch (e) {
+          this.showError(e, raw);
+        }
+      },
+
+      showError: function (e, raw) {
+        const match = e.message.match(/position (\d+)/);
+        let lineNo = 1;
+        if (match) {
+          const pos = parseInt(match[1], 10);
+          lineNo = raw.substring(0, pos).split('\n').length;
+        }
+        document.getElementById('jf-error').textContent = 'Sor ' + lineNo + ': ' + e.message;
+        this.errWrap().style.display = 'block';
+        this.outWrap().style.display = 'none';
+        Utils.toast('Hibás JSON (sor ' + lineNo + ')', 'error');
+      },
+
+      highlight: function (json) {
+        return Utils.escapeHtml(json)
+          .replace(/"(\\u[a-fA-F0-9]{4}|\\[^u]|[^\\"]*)*("(\s*:)?)/g, function (m) {
+            return m.endsWith(':') ? '<span class="json-key">' + m + '</span>' : '<span class="json-str">' + m + '</span>';
+          })
+          .replace(/\b(true|false)\b/g, '<span class="json-bool">$1</span>')
+          .replace(/\b(null)\b/g, '<span class="json-null">$1</span>')
+          .replace(/\b(\d+(\.\d+)?([eE][+-]?\d+)?)\b/g, '<span class="json-num">$1</span>');
+      },
+
+      clear: function () {
+        document.getElementById('jf-input').value = '';
+        this.outWrap().style.display = 'none';
+        this.errWrap().style.display = 'none';
+      }
+    };
+
+    /* =============================================================
+       JSON ↔ XML CONVERTER
+       ============================================================= */
+    const JsonXml = {
+      input: function () { return document.getElementById('jx-input').value.trim(); },
+
+      jsonToXml: function () {
+        const raw = this.input();
+        if (!raw) return Utils.toast(I18n.t('toast_empty'), 'error');
+        try {
+          const obj = JSON.parse(raw);
+          const xml = this.toXml(obj, 'root');
+          this.showOutput('<?xml version="1.0" encoding="UTF-8"?>\n' + xml);
+        } catch (e) {
+          Utils.toast('Hibás JSON: ' + e.message, 'error');
+        }
+      },
+
+      xmlToJson: function () {
+        const raw = this.input();
+        if (!raw) return Utils.toast(I18n.t('toast_empty'), 'error');
+        try {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(raw, 'application/xml');
+          const err = doc.querySelector('parsererror');
+          if (err) throw new Error('XML értelmezési hiba');
+          const json = JSON.stringify(this.domToObj(doc.documentElement), null, 2);
+          this.showOutput(json);
+        } catch (e) {
+          Utils.toast('Hibás XML: ' + e.message, 'error');
+        }
+      },
+
+      toXml: function (obj, tag) {
+        if (obj === null || obj === undefined) return '<' + tag + ' />';
+        if (typeof obj !== 'object') return '<' + tag + '>' + Utils.escapeHtml(String(obj)) + '</' + tag + '>';
+        if (Array.isArray(obj)) {
+          return obj.map(function (item) { return JsonXml.toXml(item, tag); }).join('\n');
+        }
+        let xml = '<' + tag + '>';
+        for (const key in obj) {
+          if (obj.hasOwnProperty(key)) xml += '\n' + this.toXml(obj[key], key);
+        }
+        xml += '\n</' + tag + '>';
+        return xml;
+      },
+
+      domToObj: function (node) {
+        if (node.childNodes.length === 1 && node.childNodes[0].nodeType === Node.TEXT_NODE) {
+          const text = node.textContent.trim();
+          if (!text) { } else if (!isNaN(text)) return Number(text);
+          else if (text === 'true') return true;
+          else if (text === 'false') return false;
+          else if (text === 'null') return null;
+          else return text;
+        }
+        const obj = {};
+        for (let i = 0; i < node.childNodes.length; i++) {
+          const c = node.childNodes[i];
+          if (c.nodeType !== Node.ELEMENT_NODE) continue;
+          const name = c.nodeName;
+          const val = this.domToObj(c);
+          if (obj.hasOwnProperty(name)) {
+            if (!Array.isArray(obj[name])) obj[name] = [obj[name]];
+            obj[name].push(val);
+          } else {
+            obj[name] = val;
+          }
+        }
+        return obj;
+      },
+
+      showOutput: function (text) {
+        document.getElementById('jx-output').textContent = text;
+        document.getElementById('jx-output-wrap').style.display = 'block';
+      },
+
+      clear: function () {
+        document.getElementById('jx-input').value = '';
+        document.getElementById('jx-output-wrap').style.display = 'none';
+      }
+    };
+
+    /* =============================================================
+       BASE64 ENCODE / DECODE
+       ============================================================= */
+    const Base64 = {
+      showOutput: function (t) { document.getElementById('b64-output').textContent = t; document.getElementById('b64-output-wrap').style.display = 'block'; },
+      outWrap: function () { return document.getElementById('b64-output-wrap'); },
+      encodeText: function () {
+        const raw = document.getElementById('b64-input').value;
+        if (!raw) return Utils.toast(I18n.t('toast_empty'), 'error');
+        try {
+          const encoded = btoa(unescape(encodeURIComponent(raw)));
+          this.showOutput(encoded);
+        } catch (e) { Utils.toast('Hiba: ' + e.message, 'error'); }
+      },
+      decodeText: function () {
+        const raw = document.getElementById('b64-input').value.trim();
+        if (!raw) return Utils.toast(I18n.t('toast_empty'), 'error');
+        try {
+          const decoded = decodeURIComponent(escape(atob(raw)));
+          this.showOutput(decoded);
+        } catch (e) { Utils.toast('Hibás Base64', 'error'); }
+      },
+      encodeFile: function () {
+        var f = document.getElementById('b64-file').files[0];
+        if (!f) return Utils.toast('Válassz fájlt', 'error');
+        var r = new FileReader();
+        r.onload = function (e) {
+          Base64.showOutput(e.target.result);
+          document.getElementById('b64-file-meta').textContent = 'Fájl: ' + f.name + ' (' + f.size + ' byte)';
+          document.getElementById('b64-file-meta').style.display = 'block';
+        };
+        r.readAsDataURL(f);
+      },
+      clearText: function () {
+        document.getElementById('b64-input').value = '';
+        this.outWrap().style.display = 'none';
+      },
+      clearFile: function () {
+        document.getElementById('b64-file').value = '';
+        document.getElementById('b64-file-meta').style.display = 'none';
+        this.outWrap().style.display = 'none';
+      }
+    };
+
+    /* URL ENCODE/DECODE */
+    const UrlCodec = {
+      input: function () { return document.getElementById('url-input').value; },
+      outWrap: function () { return document.getElementById('url-output-wrap'); },
+      showOutput: function (t) { document.getElementById('url-output').textContent = t; this.outWrap().style.display = 'block'; },
+      encode: function () { var t = this.input(); if (!t) return Utils.toast(I18n.t('toast_empty'), 'error'); this.showOutput(encodeURIComponent(t)); },
+      decode: function () { var t = this.input(); if (!t) return Utils.toast(I18n.t('toast_empty'), 'error'); try { this.showOutput(decodeURIComponent(t)); } catch (e) { Utils.toast('Hibás URL kódolás', 'error'); } },
+      clear: function () { document.getElementById('url-input').value = ''; this.outWrap().style.display = 'none'; }
+    };
+
+    /* UUID v4 GENERATOR */
+    const UuidGen = {
+      generate: function () { var n = parseInt(document.getElementById('uuid-count').value, 10) || 5; if (n < 1) n = 1; if (n > 100) n = 100; var arr = []; for (var i = 0; i < n; i++) arr.push(this.uuidv4()); var out = arr.join('\n'); var d = document.getElementById('uuid-output'); d.innerHTML = ''; arr.forEach(function (u) { var p = document.createElement('div'); p.textContent = u; p.style.fontFamily = 'var(--font-mono)'; p.style.padding = '4px 0'; p.style.borderBottom = '1px solid var(--border)'; p.style.cursor = 'pointer'; p.title = 'Kattints a másoláshoz'; p.onclick = function () { Utils.copyText(u); }; d.appendChild(p); }); document.getElementById('uuid-output-wrap').style.display = 'block'; this._last = out; },
+      uuidv4: function () { return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) { var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8); return v.toString(16); }); },
+      copyAll: function () { if (!this._last) return Utils.toast('Előbb generálj UUID-kat', 'error'); Utils.copyText(this._last); },
+      clear: function () { document.getElementById('uuid-output').innerHTML = ''; document.getElementById('uuid-output-wrap').style.display = 'none'; this._last = ''; }
+    };
+
+    /* JWT DECODER */
+    const JwtTool = {
+      input: function () { return document.getElementById('jwt-input').value.trim(); },
+      decode: function () { var t = this.input(); if (!t) return Utils.toast(I18n.t('toast_empty'), 'error'); var p = t.split('.'); if (p.length !== 3) return Utils.toast('Érvénytelen JWT formátum', 'error'); try { var h = JSON.parse(atob(p[0].replace(/-/g, '+').replace(/_/g, '/'))); var pl = JSON.parse(atob(p[1].replace(/-/g, '+').replace(/_/g, '/'))); document.getElementById('jwt-header').textContent = JSON.stringify(h, null, 2); document.getElementById('jwt-payload').textContent = JSON.stringify(pl, null, 2); document.getElementById('jwt-signature').textContent = p[2]; document.getElementById('jwt-output-wrap').style.display = 'block'; } catch (e) { Utils.toast('Hibás JWT: ' + e.message, 'error'); } },
+      clear: function () { document.getElementById('jwt-input').value = ''; document.getElementById('jwt-output-wrap').style.display = 'none'; }
+    };
+
+    /* REGEX TESTER */
+    const RegexTool = {
+      run: function () { var p = document.getElementById('rx-pattern').value; var t = document.getElementById('rx-text').value; if (!p || !t) return Utils.toast('Adj meg mintát és szöveget', 'error'); var flags = ''; if (document.getElementById('rx-g').checked) flags += 'g'; if (document.getElementById('rx-i').checked) flags += 'i'; if (document.getElementById('rx-m').checked) flags += 'm'; if (document.getElementById('rx-s').checked) flags += 's'; if (document.getElementById('rx-u').checked) flags += 'u'; if (document.getElementById('rx-y').checked) flags += 'y'; var re; try { re = new RegExp(p, flags); } catch (e) { Utils.toast('Hibás regex: ' + e.message, 'error'); return; } var matches = []; var m; if (flags.indexOf('g') !== -1) { while ((m = re.exec(t)) !== null) { matches.push({ text: m[0], index: m.index }); if (m.index === re.lastIndex) re.lastIndex++; } } else { if ((m = re.exec(t)) !== null) { matches.push({ text: m[0], index: m.index }); } } var html = ''; var last = 0; matches.forEach(function (match) { html += Utils.escapeHtml(t.slice(last, match.index)); html += '<mark class="match">' + Utils.escapeHtml(match.text) + '</mark>'; last = match.index + match.text.length; }); html += Utils.escapeHtml(t.slice(last)); document.getElementById('rx-highlight').innerHTML = html; document.getElementById('rx-output-wrap').style.display = 'block'; var det = document.getElementById('rx-details'); det.innerHTML = ''; if (matches.length) { var info = document.createElement('div'); info.textContent = 'Találatok: ' + matches.length; info.style.marginBottom = '8px'; det.appendChild(info); matches.forEach(function (m, i) { var d = document.createElement('div'); d.style.fontFamily = 'var(--font-mono)'; d.style.padding = '4px 0'; d.style.borderBottom = '1px solid var(--border)'; d.textContent = (i + 1) + '. Pozíció ' + m.index + ': ' + m.text; det.appendChild(d); }); } else { det.textContent = 'Nincs találat.'; } document.getElementById('rx-details-wrap').style.display = 'block'; },
+      clear: function () { document.getElementById('rx-pattern').value = ''; document.getElementById('rx-text').value = ''; document.getElementById('rx-output-wrap').style.display = 'none'; document.getElementById('rx-details-wrap').style.display = 'none'; }
+    };
+
+    /* MARKDOWN PREVIEW */
+    const MarkdownTool = {
+      parse: function (md) { var ph = [], i = 0; function push(h) { ph.push(h); return '__PH' + i++ + '__'; } md = md.replace(/```([\s\S]*?)```/gm, function (m, p1) { return push('<pre><code>' + Utils.escapeHtml(p1) + '</code></pre>'); }); md = md.replace(/`([^`]+)`/gm, function (m, p1) { return push('<code>' + Utils.escapeHtml(p1) + '</code>'); }); md = md.replace(/^###### (.*$)/gm, '<h6>$1</h6>'); md = md.replace(/^##### (.*$)/gm, '<h5>$1</h5>'); md = md.replace(/^#### (.*$)/gm, '<h4>$1</h4>'); md = md.replace(/^### (.*$)/gm, '<h3>$1</h3>'); md = md.replace(/^## (.*$)/gm, '<h2>$1</h2>'); md = md.replace(/^# (.*$)/gm, '<h1>$1</h1>'); md = md.replace(/\*\*\*(.*?)\*\*\*/g, '<em><strong>$1</strong></em>'); md = md.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); md = md.replace(/\*(.*?)\*/g, '<em>$1</em>'); md = md.replace(/___(.*?)___/g, '<em><strong>$1</strong></em>'); md = md.replace(/__(.*?)__/g, '<strong>$1</strong>'); md = md.replace(/_(.*?)_/g, '<em>$1</em>'); md = md.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img alt="$1" src="$2">'); md = md.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>'); md = md.replace(/^> ?(.*$)/gm, '<blockquote>$1</blockquote>'); md = md.replace(/^\- (.*$)/gm, '<ul><li>$1</li></ul>'); md = md.replace(/^\* (.*$)/gm, '<ul><li>$1</li></ul>'); md = md.replace(/^\d+\. (.*$)/gm, '<ol><li>$1</li></ol>'); md = md.replace(/^---$/gm, '<hr>'); md = md.replace(/\n/gm, '<br>'); for (var j = 0; j < ph.length; j++) { md = md.replace('__PH' + j + '__', ph[j]); } return md; },
+      render: function () { var t = document.getElementById('md-input').value; document.getElementById('md-preview').innerHTML = this.parse(t); },
+      clear: function () { document.getElementById('md-input').value = ''; this.render(); }
+    };
+
+    /* AUTOSAVE */
+    const Autosave = {
+      keys: ['jf-input','jx-input','b64-input','url-input','jwt-input','rx-pattern','rx-text','md-input'],
+      checkboxKeys: ['rx-g','rx-i','rx-m','rx-s','rx-u','rx-y'],
+      init() {
+        [...this.keys, ...this.checkboxKeys].forEach(k => {
+          const el = document.getElementById(k);
+          if(!el) return;
+          const v = localStorage.getItem('devtools-save-' + k);
+          if(v !== null) {
+            if(el.type === 'checkbox') el.checked = v === 'true';
+            else el.value = v;
+          }
+          const ev = el.type === 'checkbox' ? 'change' : 'input';
+          el.addEventListener(ev, () => localStorage.setItem('devtools-save-' + k, el.type==='checkbox' ? el.checked : el.value));
+        });
+      },
+      clear() {
+        [...this.keys, ...this.checkboxKeys].forEach(k => localStorage.removeItem('devtools-save-' + k));
+      }
+    };
+
+    /* I18N */
+    const I18n = {
+  dict: {
+    hu: {
+      "app_title": "DevTools",
+      "meta_title": "DevTools — Fejlesztői Eszköztár",
+      "lang_hu": "HU",
+      "lang_en": "EN",
+      "lang_changed": "Nyelv módosítva!",
+      "privacy_text": "100% kliensoldali feldolgozás — az adatok soha nem hagyják el a böngészőt",
+      "nav_jsonformatter": "JSON Formatter",
+      "nav_jsonxml": "JSON ↔ XML",
+      "nav_base64": "Base64",
+      "nav_urlcodec": "URL Encode / Decode",
+      "nav_uuid": "UUID v4",
+      "nav_jwt": "JWT Decoder",
+      "nav_regex": "Regex Tester",
+      "nav_markdown": "Markdown Preview",
+      "jsonformatter_title": "JSON Formatter & Validator",
+      "jsonformatter_desc": "Illeszd be a JSON-t, majd formázd szépen vagy ellenőrizd a szintaxist. A hibák sor számmal jelennek meg.",
+      "jsonxml_title": "JSON ↔ XML Converter",
+      "jsonxml_desc": "Konvertálj JSON-t XML-be és fordítva. Figyelem: az XML attribútumok nem kerülnek külön kezelésre.",
+      "base64_title": "Base64 Encode / Decode",
+      "base64_desc": "Szöveg és fájl alapú Base64 kódolás és dekódolás.",
+      "urlcodec_title": "URL Encode / Decode",
+      "urlcodec_desc": "Kódold vagy dekódold az URL-eket és paramétereket.",
+      "uuid_title": "UUID v4 Generator",
+      "uuid_desc": "Generálj egyszerre több véletlenszerű UUID-t.",
+      "jwt_title": "JWT Decoder",
+      "jwt_desc": "Decodold a JSON Web Token header és payload részét. A szignatúra ellenőrzés nélkül jelenik meg.",
+      "regex_title": "Regex Tester",
+      "regex_desc": "Teszteld a reguláris kifejezéseidet valós időben.",
+      "markdown_title": "Markdown Preview",
+      "markdown_desc": "Valós idejű, GitHub-stílusú Markdown előnézet.",
+      "card_input": "Input",
+      "card_output": "Output",
+      "card_error": "Hiba",
+      "card_text": "Szöveg",
+      "card_file_encode": "Fájl (Encode)",
+      "card_result": "Eredmény",
+      "card_settings": "Beállítások",
+      "card_token": "Token",
+      "card_pattern": "Minta (Pattern)",
+      "card_testtext": "Tesztszöveg",
+      "card_highlight": "Kiemelés",
+      "card_matches": "Találatok",
+      "card_preview": "Előnézet",
+      "btn_format": "Formázás",
+      "btn_minify": "Minify",
+      "btn_validate": "Validálás",
+      "btn_clear": "Clear",
+      "btn_json_to_xml": "JSON → XML",
+      "btn_xml_to_json": "XML → JSON",
+      "btn_encode": "Encode",
+      "btn_decode": "Decode",
+      "btn_file_to_b64": "Fájl Base64-re",
+      "btn_generate": "Generálás",
+      "btn_copy_all": "Összes másolása",
+      "btn_decode_jwt": "Decodolás",
+      "btn_run_test": "Teszt futtatása",
+      "btn_copy": "Másolás",
+      "ph_json": "Illeszd be a JSON-t ide...",
+      "ph_jsonxml": "JSON vagy XML...",
+      "ph_text": "Szöveg...",
+      "ph_text_here": "Ide írd a szöveget...",
+      "ph_jwt": "Illeszd be a JWT-t...",
+      "ph_pattern": "pl. [A-Za-z0-9]+",
+      "ph_markdown": "Írj Markdown-t...",
+      "ph_quantity": "Mennyiség",
+      "flag_g": "g (global)",
+      "flag_i": "i (case-insensitive)",
+      "flag_m": "m (multiline)",
+      "flag_s": "s (dotAll)",
+      "flag_u": "u (unicode)",
+      "flag_y": "y (sticky)",
+      "toast_empty_input": "Üres input",
+      "toast_valid_json": "A JSON érvényes!",
+      "toast_copy_ok": "Vágólapra másolva!",
+      "toast_copy_fail": "Másolás sikertelen",
+      "toast_enter_jwt": "Adj meg egy JWT tokent",
+      "toast_enter_pattern": "Adj meg egy mintát",
+      "toast_enter_text": "Adj meg egy tesztszöveget",
+      "toast_uuid_copy": "Összes UUID másolva",
+      "toast_no_uuid": "Nincs UUID a vágólapra",
+      "error_json": "Érvénytelen JSON",
+      "label_quantity": "Mennyiség",
+      "file_placeholder": "Válassz fájlt..."
+},
+    en: {
+      "app_title": "DevTools",
+      "meta_title": "DevTools — Developer Toolkit",
+      "lang_hu": "HU",
+      "lang_en": "EN",
+      "lang_changed": "Language changed!",
+      "privacy_text": "100% client-side processing — your data never leaves the browser",
+      "nav_jsonformatter": "JSON Formatter",
+      "nav_jsonxml": "JSON ↔ XML",
+      "nav_base64": "Base64",
+      "nav_urlcodec": "URL Encode / Decode",
+      "nav_uuid": "UUID v4",
+      "nav_jwt": "JWT Decoder",
+      "nav_regex": "Regex Tester",
+      "nav_markdown": "Markdown Preview",
+      "jsonformatter_title": "JSON Formatter & Validator",
+      "jsonformatter_desc": "Paste JSON to format it nicely or validate syntax. Errors shown with line numbers.",
+      "jsonxml_title": "JSON ↔ XML Converter",
+      "jsonxml_desc": "Convert JSON to XML and vice versa. Note: XML attributes are not handled separately.",
+      "base64_title": "Base64 Encode / Decode",
+      "base64_desc": "Text and file-based Base64 encoding and decoding.",
+      "urlcodec_title": "URL Encode / Decode",
+      "urlcodec_desc": "Encode or decode URLs and parameters.",
+      "uuid_title": "UUID v4 Generator",
+      "uuid_desc": "Generate multiple random UUIDs at once.",
+      "jwt_title": "JWT Decoder",
+      "jwt_desc": "Decode the header and payload of a JSON Web Token. Signature is shown without verification.",
+      "regex_title": "Regex Tester",
+      "regex_desc": "Test your regular expressions in real time.",
+      "markdown_title": "Markdown Preview",
+      "markdown_desc": "Real-time GitHub-style Markdown preview.",
+      "card_input": "Input",
+      "card_output": "Output",
+      "card_error": "Error",
+      "card_text": "Text",
+      "card_file_encode": "File (Encode)",
+      "card_result": "Result",
+      "card_settings": "Settings",
+      "card_token": "Token",
+      "card_pattern": "Pattern",
+      "card_testtext": "Test Text",
+      "card_highlight": "Highlight",
+      "card_matches": "Matches",
+      "card_preview": "Preview",
+      "btn_format": "Format",
+      "btn_minify": "Minify",
+      "btn_validate": "Validate",
+      "btn_clear": "Clear",
+      "btn_json_to_xml": "JSON → XML",
+      "btn_xml_to_json": "XML → JSON",
+      "btn_encode": "Encode",
+      "btn_decode": "Decode",
+      "btn_file_to_b64": "File to Base64",
+      "btn_generate": "Generate",
+      "btn_copy_all": "Copy All",
+      "btn_decode_jwt": "Decode",
+      "btn_run_test": "Run Test",
+      "btn_copy": "Copy",
+      "ph_json": "Paste JSON here...",
+      "ph_jsonxml": "JSON or XML...",
+      "ph_text": "Text...",
+      "ph_text_here": "Type text here...",
+      "ph_jwt": "Paste JWT here...",
+      "ph_pattern": "e.g. [A-Za-z0-9]+",
+      "ph_markdown": "Write Markdown...",
+      "ph_quantity": "Quantity",
+      "flag_g": "g (global)",
+      "flag_i": "i (case-insensitive)",
+      "flag_m": "m (multiline)",
+      "flag_s": "s (dotAll)",
+      "flag_u": "u (unicode)",
+      "flag_y": "y (sticky)",
+      "toast_empty_input": "Empty input",
+      "toast_valid_json": "Valid JSON!",
+      "toast_copy_ok": "Copied to clipboard!",
+      "toast_copy_fail": "Copy failed",
+      "toast_enter_jwt": "Enter a JWT token",
+      "toast_enter_pattern": "Enter a pattern",
+      "toast_enter_text": "Enter test text",
+      "toast_uuid_copy": "All UUIDs copied",
+      "toast_no_uuid": "Nothing to copy",
+      "error_json": "Invalid JSON",
+      "label_quantity": "Quantity",
+      "file_placeholder": "Choose a file..."
+}
+  },
+  lang: 'hu',
+  t(k) { return this.dict[this.lang][k] || k; },
+  setLang(l) {
+    const currentPath = window.location.pathname;
+    let newPath = null;
+    if (l === 'en') {
+      if (!currentPath.startsWith('/en/')) {
+        newPath = '/en' + currentPath;
+      }
+      document.documentElement.lang = 'en';
+    } else {
+      if (currentPath.startsWith('/en/')) {
+        newPath = currentPath.replace('/en/', '/');
+      } else if (currentPath === '/en') {
+        newPath = '/';
+      }
+      document.documentElement.lang = 'hu';
+    }
+    if (newPath) {
+      try { history.pushState(null, '', newPath); } catch (e) {}
+    }
+    this.lang = l;
+    localStorage.setItem('devtools_lang', l);
+    this.apply();
+    Utils.toast(I18n.t('lang_changed'), 'success');
+  },
+  apply() {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (this.dict[this.lang][key]) {
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+          el.value = this.dict[this.lang][key];
+        } else if (el.tagName === 'TITLE') {
+          document.title = this.dict[this.lang][key];
+        } else {
+          el.textContent = this.dict[this.lang][key];
+        }
+      }
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      if (this.dict[this.lang][key]) {
+        el.placeholder = this.dict[this.lang][key];
+      }
+    });
+    document.querySelectorAll('[data-i18n-title]').forEach(el => {
+      const key = el.getAttribute('data-i18n-title');
+      if (this.dict[this.lang][key]) {
+        el.title = this.dict[this.lang][key];
+      }
+    });
+  },
+  init() {
+    const saved = localStorage.getItem('devtools_lang');
+    if (saved) { this.lang = saved; }
+    // URL path alapján felülírás
+    const path = window.location.pathname;
+    if (path.startsWith('/en/')) { this.lang = 'en'; }
+    if (this.lang === 'en') document.documentElement.lang = 'en';
+    else document.documentElement.lang = 'hu';
+    this.apply();
+  }
+};
+
+    /* INIT & SERVICE WORKER */
+    document.addEventListener('DOMContentLoaded', function () {
+      Utils.initPathNav();
+      Utils.initKeyboard();
+      Autosave.init();
+      I18n.init();
+      Utils.setupAutoResize('textarea');
+      document.getElementById('md-input').addEventListener('input', function () { MarkdownTool.render(); });
+      MarkdownTool.render();
+    });
+  </script>
+</body>
+</html>
