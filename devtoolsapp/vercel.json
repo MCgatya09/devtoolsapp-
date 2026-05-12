@@ -1,0 +1,80 @@
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/en",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/en/",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/jsonformatter",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/jsonxml",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/base64",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/urlcodec",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/uuid",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/jwt",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/regex",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/markdown",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/en/jsonformatter",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/en/jsonxml",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/en/base64",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/en/urlcodec",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/en/uuid",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/en/jwt",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/en/regex",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/en/markdown",
+      "destination": "/index.html"
+    }
+  ]
+}
