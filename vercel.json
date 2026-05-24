@@ -13,7 +13,7 @@
       "destination": "/sitemap.xml"
     },
     {
-      "source": "/((en|jsonformatter|jsonxml|base64|urlcodec|uuid|jwt|regex|markdown)(/.*)?)",
+      "source": "/:path*",
       "destination": "/index.html"
     }
   ]
