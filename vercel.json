@@ -1,79 +1,19 @@
 {
   "rewrites": [
     {
-      "source": "/",
-      "destination": "/index.html"
+      "source": "/ads.txt",
+      "destination": "/ads.txt"
     },
     {
-      "source": "/en",
-      "destination": "/index.html"
+      "source": "/robots.txt",
+      "destination": "/robots.txt"
     },
     {
-      "source": "/en/",
-      "destination": "/index.html"
+      "source": "/sitemap.xml",
+      "destination": "/sitemap.xml"
     },
     {
-      "source": "/jsonformatter",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/jsonxml",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/base64",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/urlcodec",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/uuid",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/jwt",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/regex",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/markdown",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/en/jsonformatter",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/en/jsonxml",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/en/base64",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/en/urlcodec",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/en/uuid",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/en/jwt",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/en/regex",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/en/markdown",
+      "source": "/((en|jsonformatter|jsonxml|base64|urlcodec|uuid|jwt|regex|markdown)(/.*)?)",
       "destination": "/index.html"
     }
   ]
