@@ -23,10 +23,6 @@
     content="Ingyenes fejlesztői eszköztár JSON formázáshoz, Base64, UUID, JWT és egyebekhez.">
   <meta name="theme-color" content="#161b22">
   <meta name="color-scheme" content="dark">
-  <link rel="canonical" href="https://devtoolsapp.com/" id="canonical-link">
-  <link rel="alternate" hreflang="hu" href="https://devtoolsapp.com/" id="hreflang-hu">
-  <link rel="alternate" hreflang="en" href="https://devtoolsapp.com/en/" id="hreflang-en">
-  <link rel="alternate" hreflang="x-default" href="https://devtoolsapp.com/" id="hreflang-xdefault">
   <link rel="manifest"
     href="data:application/json;base64,eyJuYW1lIjoiRGV2VG9vbHMiLCJzaG9ydF9uYW1lIjoiRGV2VG9vbHMiLCJzdGFydF91cmwiOiIuIiwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiIzBkMTExNyIsInRoZW1lX2NvbG9yIjoiIzE2MWIyMiJ9">
 
@@ -732,6 +728,7 @@
       text-align: center;
     }
   </style>
+<base target="_blank">
 </head>
 
 <body>
@@ -870,14 +867,7 @@
         <div class="card-title" style="color:var(--danger)" data-i18n="card_error">Hiba</div>
         <pre id="jf-error" style="color:var(--danger)"></pre>
       </div>
-    
-    <div class="card tool-info">
-      <h3 style="font-size:1rem;margin-bottom:8px;color:var(--accent);" data-i18n="info_jsonformatter_title">Miért hasznos a JSON formázó?</h3>
-      <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:10px;" data-i18n="info_jsonformatter_p1">A JSON (JavaScript Object Notation) a webes alkalmazások leggyakrabban használt adatcsere-formátuma. API válaszok, konfigurációs fájlok és NoSQL adatbázisok tárolására egyaránt alkalmas. A nyers, tömörített JSON azonban nehezen olvasható emberi szemmel.</p>
-      <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:10px;" data-i18n="info_jsonformatter_p2">Ez az eszköz automatikusan behúzásokat és színes szintaxis kiemelést ad a struktúrának, így gyorsan észreveheted a hiányzó vesszőket, zárójeleket vagy idézőjeleket. Használd REST API válaszok debuggolásához, konfigurációk ellenőrzéséhez, vagy tanuláshoz.</p>
-      <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);" data-i18n="info_jsonformatter_p3">A validátor funkció sor-szintű hibajelzést ad, így pillanatok alatt megtalálod a szintaktikai problémákat anélkül, hogy külön IDE-t kellene indítanod.</p>
-    </div>
-</section>
+    </section>
 
     <!-- ===========================================
      ESZKÖZ: JSON ↔ XML CONVERTER
@@ -901,14 +891,7 @@
         <pre id="jx-output"></pre>
         <button class="copy-btn" onclick="Utils.copyFrom('jx-output')" data-i18n="btn_copy">Másolás</button>
       </div>
-    
-    <div class="card tool-info">
-      <h3 style="font-size:1rem;margin-bottom:8px;color:var(--accent);" data-i18n="info_jsonxml_title">Mikor van szükség JSON és XML konvertálásra?</h3>
-      <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:10px;" data-i18n="info_jsonxml_p1">A modern REST API-k és microservice-ek többsége JSON-t használ, de sok legacy vállalati rendszer, SOAP webszolgáltatás és XML-alapú konfiguráció (pl. Maven, AndroidManifest, SVG) még mindig XML-re támaszkodik.</p>
-      <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:10px;" data-i18n="info_jsonxml_p2">Ez az eszköz gyors, kétirányú átalakítást tesz lehetővé a két formátum között anélkül, hogy külön szoftvert vagy parancssori eszközt kellene telepítened. Ideális integrációs feladatokhoz, adatmigrációhoz és régi rendszerek modernizálásához.</p>
-      <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);" data-i18n="info_jsonxml_p3">Fontos tudni, hogy az XML attribútumok és névterek (namespaces) nem kerülnek automatikusan külön kezelésre — egyszerűsített, de gyors konvertálást kapsz, ami a legtöbb napi feladathoz tökéletesen elegendő.</p>
-    </div>
-</section>
+    </section>
 
     <!-- ===========================================
      ESZKÖZ: BASE64 ENCODE / DECODE
@@ -942,14 +925,7 @@
         <pre id="b64-output"></pre>
         <button class="copy-btn" onclick="Utils.copyFrom('b64-output')" data-i18n="btn_copy">Másolás</button>
       </div>
-    
-    <div class="card tool-info">
-      <h3 style="font-size:1rem;margin-bottom:8px;color:var(--accent);" data-i18n="info_base64_title">Mi az a Base64 kódolás?</h3>
-      <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:10px;" data-i18n="info_base64_p1">A Base64 egy bináris adat szöveges ábrázolási módja, amelyet elsősorban olyan helyeken használnak, ahol csak ASCII szöveges tartalom továbbítható biztonságosan. A 64 karakteres ábécé (A–Z, a–z, 0–9, +, /) minden bináris információt reprezentálni képes.</p>
-      <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:10px;" data-i18n="info_base64_p2">Gyakori alkalmazási területei közé tartozik az e-mail mellékletek MIME kódolása, a CSS-ben vagy HTML-ben inline használt képek (data URI scheme), valamint REST API-kban küldött fájlok és tokenek. Fejlesztők naponta találkoznak Base64 stringekkel JWT tokenekben és adatURL-ekben.</p>
-      <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);" data-i18n="info_base64_p3">Ez az eszköz szöveget és helyi fájlokat egyaránt képes gyorsan kódolni és visszafejteni. A fájl encode funkció automatikusan felismeri a MIME típust, így készen áll a beillesztésre webes környezetbe.</p>
-    </div>
-</section>
+    </section>
 
     <!-- ===========================================
      ESZKÖZ: URL ENCODE / DECODE
@@ -973,14 +949,7 @@
         <pre id="url-output"></pre>
         <button class="copy-btn" onclick="Utils.copyFrom('url-output')" data-i18n="btn_copy">Másolás</button>
       </div>
-    
-    <div class="card tool-info">
-      <h3 style="font-size:1rem;margin-bottom:8px;color:var(--accent);" data-i18n="info_urlcodec_title">Mikor kell URL-t kódolni vagy dekódolni?</h3>
-      <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:10px;" data-i18n="info_urlcodec_p1">Az URL-ekben bizonyos karakterek — mint a szóköz, az ékezetes betűk, a perjel vagy az ampersand — nem szerepelhetnek nyers formában, mert félreértelmezhetik a böngésző vagy a szerver a cím szerkezetét. Az encodeURIComponent szabvány szerinti kódolása biztosítja a helyes értelmezést.</p>
-      <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:10px;" data-i18n="info_urlcodec_p2">Használd ezt az eszközt API hívások query paramétereinek előkészítéséhez, összetett keresési URL-ek összeállításához, vagy form adatok biztonságos továbbításához. A dekódoló funkcióval visszaállíthatod az eredeti, olvasható szöveget egy kódolt linkből.</p>
-      <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);" data-i18n="info_urlcodec_p3">Különösen hasznos frontend és backend fejlesztőknek egyaránt, akik gyakran dolgoznak OAuth redirect URI-kkel, deep linkekkel és query string-ekkel.</p>
-    </div>
-</section>
+    </section>
 
     <!-- ===========================================
      ESZKÖZ: UUID v4 GENERATOR
@@ -1004,14 +973,7 @@
         <div class="card-title" data-i18n="card_result">Eredmény</div>
         <div id="uuid-output"></div>
       </div>
-    
-    <div class="card tool-info">
-      <h3 style="font-size:1rem;margin-bottom:8px;color:var(--accent);" data-i18n="info_uuid_title">Mi az a UUID és mikor használják?</h3>
-      <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:10px;" data-i18n="info_uuid_p1">Az UUID (Universally Unique Identifier) egy 128 bites azonosító, amely statisztikailag garantáltan egyedi marad még globálisan, elosztott rendszerekben is. A v4 verzió teljesen véletlenszerűen generálódik kriptográfiailag biztonságos algoritmusokkal.</p>
-      <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:10px;" data-i18n="info_uuid_p2">Fejlesztők adatbázis elsődleges kulcsokként (PostgreSQL, MongoDB), session azonosítókként, fájlnévként, vagy mikroszolgáltatásokban entitás-azonosításhoz alkalmazzák. Az UUID-k előnye, hogy offline is generálhatók anélkül, hogy centralizált számlálóra lenne szükség.</p>
-      <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);" data-i18n="info_uuid_p3">Ez az eszköz egyszerre akár száz egyedi azonosítót is generálhat, és egy kattintással a vágólapra másolhatod az összeset. Tökéletes tesztadatok előállításához és prototípusok építéséhez.</p>
-    </div>
-</section>
+    </section>
 
     <!-- ===========================================
      ESZKÖZ: JWT DECODER
@@ -1046,14 +1008,7 @@
           <button class="copy-btn" onclick="Utils.copyFrom('jwt-signature')" data-i18n="btn_copy">Másolás</button>
         </div>
       </div>
-    
-    <div class="card tool-info">
-      <h3 style="font-size:1rem;margin-bottom:8px;color:var(--accent);" data-i18n="info_jwt_title">Hogyan működik a JSON Web Token?</h3>
-      <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:10px;" data-i18n="info_jwt_p1">A JWT (JSON Web Token) egy nyílt szabvány (RFC 7519), amely kompakt és önálló módon biztosít információátvitelt a felek között. Három ponttal elválasztott részből áll: header (algoritmus és token típus), payload (állítások / claims) és signature (digitális aláírás).</p>
-      <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:10px;" data-i18n="info_jwt_p2">Gyakran használják autentikációhoz és autorizációhoz modern webes és mobil alkalmazásokban. A szerver a titkos kulcsával aláírja a tokent, és a kliens minden kérésnél elküldi. A szerver ellenőrzi az aláírást, majd a payloadból kiolvassa a felhasználói jogosultságokat és lejárati időt.</p>
-      <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);" data-i18n="info_jwt_p3">Ez az eszköz dekódolja a token Base64Url kódolt header és payload részét, így gyorsan ellenőrizheted a lejárati időt (exp), a kiállítót (iss) és az egyéb claim-eket anélkül, hogy külön JWT könyvtárat importálnál a projektedbe.</p>
-    </div>
-</section>
+    </section>
 
     <!-- ===========================================
      ESZKÖZ: REGEX TESTER
@@ -1089,14 +1044,7 @@
         <div class="card-title" data-i18n="card_matches">Találatok</div>
         <div id="rx-details" style="font-size:0.8125rem;"></div>
       </div>
-    
-    <div class="card tool-info">
-      <h3 style="font-size:1rem;margin-bottom:8px;color:var(--accent);" data-i18n="info_regex_title">Mi az a reguláris kifejezés?</h3>
-      <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:10px;" data-i18n="info_regex_p1">A reguláris kifejezések (regex vagy regexp) formális nyelvek, amelyek szövegminták leírására szolgálnak. Segítségükkel kereshetsz, validálhatsz, szűrhetsz és cserélhetsz szövegrészeket rendkívül hatékonyan, akár nagy méretű log fájlokban is.</p>
-      <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:10px;" data-i18n="info_regex_p2">Gyakori felhasználási területei: e-mail cím és telefonszám validáció, dátum formátum ellenőrzés, HTML tag-ek kinyerése, log fájlok szűrése, kódrefaktorálás IDE-kben, és input mezők ellenőrzése webes űrlapokon. A JavaScript, Python, Java és szinte minden modern nyelv beépített regex támogatással rendelkezik.</p>
-      <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);" data-i18n="info_regex_p3">Ez az eszköz valós időben, színes kiemeléssel mutatja a találatokat, és támogatja az összes JavaScript regex flag-et (global, case-insensitive, multiline, dotAll, unicode, sticky). Így azonnal láthatod, ha a mintád helyes, mielőtt beillesztenéd a produkciós kódodba.</p>
-    </div>
-</section>
+    </section>
 
     <!-- ===========================================
      ESZKÖZ: MARKDOWN PREVIEW
@@ -1121,14 +1069,7 @@
           </div>
         </div>
       </div>
-    
-    <div class="card tool-info">
-      <h3 style="font-size:1rem;margin-bottom:8px;color:var(--accent);" data-i18n="info_markdown_title">Miért népszerű a Markdown?</h3>
-      <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:10px;" data-i18n="info_markdown_p1">A Markdown egy könnyűsúlyú jelölőnyelv, amelyet John Gruber 2004-ben alkotott meg. Célja, hogy olvasható, nyers formában is tiszta szövegként írható legyen, majd egyszerűen strukturált HTML-re konvertálható. A szintaxis minimális, így a tartalomra koncentrálhatsz a formázás helyett.</p>
-      <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:10px;" data-i18n="info_markdown_p2">A GitHub README fájlok, dokumentációk (GitBook, Docusaurus), blogbejegyzések (Jekyll, Hugo), jegyzetelő alkalmazások (Notion, Obsidian) és chat üzenetek (Discord, Slack) alapértelmezett vagy támogatott formátuma. A .md kiterjesztés ma már szinonimája a fejlesztői dokumentációnak.</p>
-      <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);" data-i18n="info_markdown_p3">Ez az előnézeti eszköz GitHub-stílusú CSS renderelést biztosít, beleértve a kódblokkokat, táblázatokat, idézeteket és listákat. Így pontosan láthatod, hogyan fog kinézni a dokumentumod publikálás előtt, és gyorsan javíthatod a szintaktikai hibákat.</p>
-    </div>
-</section>
+    </section>
 
     <div class="ad-placeholder ad-footer">Hirdetés (AdSense)</div>
 
@@ -1266,15 +1207,26 @@
         const twDesc = document.querySelector('meta[name="twitter:description"]');
         if (twDesc) twDesc.setAttribute('content', d);
 
-        // Update canonical and hreflang
-        const canonical = document.getElementById('canonical-link');
-        if (canonical) canonical.setAttribute('href', currentUrl);
-        const hreflangHu = document.getElementById('hreflang-hu');
-        if (hreflangHu) hreflangHu.setAttribute('href', huUrl);
-        const hreflangEn = document.getElementById('hreflang-en');
-        if (hreflangEn) hreflangEn.setAttribute('href', enUrl);
-        const hreflangX = document.getElementById('hreflang-xdefault');
-        if (hreflangX) hreflangX.setAttribute('href', huUrl);
+        // Update or create canonical and hreflang tags dynamically
+        function ensureLink(id, rel, hreflang) {
+          let el = document.getElementById(id);
+          if (!el) {
+            el = document.createElement('link');
+            el.id = id;
+            el.rel = rel;
+            if (hreflang) el.setAttribute('hreflang', hreflang);
+            document.head.appendChild(el);
+          }
+          return el;
+        }
+        const canonical = ensureLink('canonical-link', 'canonical');
+        canonical.setAttribute('href', currentUrl);
+        const hreflangHu = ensureLink('hreflang-hu', 'alternate', 'hu');
+        hreflangHu.setAttribute('href', huUrl);
+        const hreflangEn = ensureLink('hreflang-en', 'alternate', 'en');
+        hreflangEn.setAttribute('href', enUrl);
+        const hreflangX = ensureLink('hreflang-xdefault', 'alternate', 'x-default');
+        hreflangX.setAttribute('href', huUrl);
 
         // Update JSON-LD
         const jsonLd = document.querySelector('script[type="application/ld+json"]');
@@ -1689,40 +1641,8 @@
       "toast_no_uuid": "Nincs UUID a vágólapra",
       "error_json": "Érvénytelen JSON",
       "label_quantity": "Mennyiség",
-      
-      "info_jsonformatter_title": "Miért hasznos a JSON formázó?",
-      "info_jsonformatter_p1": "A JSON (JavaScript Object Notation) a webes alkalmazások leggyakrabban használt adatcsere-formátuma. API válaszok, konfigurációs fájlok és NoSQL adatbázisok tárolására egyaránt alkalmas. A nyers, tömörített JSON azonban nehezen olvasható emberi szemmel.",
-      "info_jsonformatter_p2": "Ez az eszköz automatikusan behúzásokat és színes szintaxis kiemelést ad a struktúrának, így gyorsan észreveheted a hiányzó vesszőket, zárójeleket vagy idézőjeleket. Használd REST API válaszok debuggolásához, konfigurációk ellenőrzéséhez, vagy tanuláshoz.",
-      "info_jsonformatter_p3": "A validátor funkció sor-szintű hibajelzést ad, így pillanatok alatt megtalálod a szintaktikai problémákat anélkül, hogy külön IDE-t kellene indítanod.",
-      "info_jsonxml_title": "Mikor van szükség JSON és XML konvertálásra?",
-      "info_jsonxml_p1": "A modern REST API-k és microservice-ek többsége JSON-t használ, de sok legacy vállalati rendszer, SOAP webszolgáltatás és XML-alapú konfiguráció (pl. Maven, AndroidManifest, SVG) még mindig XML-re támaszkodik.",
-      "info_jsonxml_p2": "Ez az eszköz gyors, kétirányú átalakítást tesz lehetővé a két formátum között anélkül, hogy külön szoftvert vagy parancssori eszközt kellene telepítened. Ideális integrációs feladatokhoz, adatmigrációhoz és régi rendszerek modernizálásához.",
-      "info_jsonxml_p3": "Fontos tudni, hogy az XML attribútumok és névterek (namespaces) nem kerülnek automatikusan külön kezelésre — egyszerűsített, de gyors konvertálást kapsz, ami a legtöbb napi feladathoz tökéletesen elegendő.",
-      "info_base64_title": "Mi az a Base64 kódolás?",
-      "info_base64_p1": "A Base64 egy bináris adat szöveges ábrázolási módja, amelyet elsősorban olyan helyeken használnak, ahol csak ASCII szöveges tartalom továbbítható biztonságosan. A 64 karakteres ábécé (A–Z, a–z, 0–9, +, /) minden bináris információt reprezentálni képes.",
-      "info_base64_p2": "Gyakori alkalmazási területei közé tartozik az e-mail mellékletek MIME kódolása, a CSS-ben vagy HTML-ben inline használt képek (data URI scheme), valamint REST API-kban küldött fájlok és tokenek. Fejlesztők naponta találkoznak Base64 stringekkel JWT tokenekben és adatURL-ekben.",
-      "info_base64_p3": "Ez az eszköz szöveget és helyi fájlokat egyaránt képes gyorsan kódolni és visszafejteni. A fájl encode funkció automatikusan felismeri a MIME típust, így készen áll a beillesztésre webes környezetbe.",
-      "info_urlcodec_title": "Mikor kell URL-t kódolni vagy dekódolni?",
-      "info_urlcodec_p1": "Az URL-ekben bizonyos karakterek — mint a szóköz, az ékezetes betűk, a perjel vagy az ampersand — nem szerepelhetnek nyers formában, mert félreértelmezhetik a böngésző vagy a szerver a cím szerkezetét. Az encodeURIComponent szabvány szerinti kódolása biztosítja a helyes értelmezést.",
-      "info_urlcodec_p2": "Használd ezt az eszközt API hívások query paramétereinek előkészítéséhez, összetett keresési URL-ek összeállításához, vagy form adatok biztonságos továbbításához. A dekódoló funkcióval visszaállíthatod az eredeti, olvasható szöveget egy kódolt linkből.",
-      "info_urlcodec_p3": "Különösen hasznos frontend és backend fejlesztőknek egyaránt, akik gyakran dolgoznak OAuth redirect URI-kkel, deep linkekkel és query string-ekkel.",
-      "info_uuid_title": "Mi az a UUID és mikor használják?",
-      "info_uuid_p1": "Az UUID (Universally Unique Identifier) egy 128 bites azonosító, amely statisztikailag garantáltan egyedi marad még globálisan, elosztott rendszerekben is. A v4 verzió teljesen véletlenszerűen generálódik kriptográfiailag biztonságos algoritmusokkal.",
-      "info_uuid_p2": "Fejlesztők adatbázis elsődleges kulcsokként (PostgreSQL, MongoDB), session azonosítókként, fájlnévként, vagy mikroszolgáltatásokban entitás-azonosításhoz alkalmazzák. Az UUID-k előnye, hogy offline is generálhatók anélkül, hogy centralizált számlálóra lenne szükség.",
-      "info_uuid_p3": "Ez az eszköz egyszerre akár száz egyedi azonosítót is generálhat, és egy kattintással a vágólapra másolhatod az összeset. Tökéletes tesztadatok előállításához és prototípusok építéséhez.",
-      "info_jwt_title": "Hogyan működik a JSON Web Token?",
-      "info_jwt_p1": "A JWT (JSON Web Token) egy nyílt szabvány (RFC 7519), amely kompakt és önálló módon biztosít információátvitelt a felek között. Három ponttal elválasztott részből áll: header (algoritmus és token típus), payload (állítások / claims) és signature (digitális aláírás).",
-      "info_jwt_p2": "Gyakran használják autentikációhoz és autorizációhoz modern webes és mobil alkalmazásokban. A szerver a titkos kulcsával aláírja a tokent, és a kliens minden kérésnél elküldi. A szerver ellenőrzi az aláírást, majd a payloadból kiolvassa a felhasználói jogosultságokat és lejárati időt.",
-      "info_jwt_p3": "Ez az eszköz dekódolja a token Base64Url kódolt header és payload részét, így gyorsan ellenőrizheted a lejárati időt (exp), a kiállítót (iss) és az egyéb claim-eket anélkül, hogy külön JWT könyvtárat importálnál a projektedbe.",
-      "info_regex_title": "Mi az a reguláris kifejezés?",
-      "info_regex_p1": "A reguláris kifejezések (regex vagy regexp) formális nyelvek, amelyek szövegminták leírására szolgálnak. Segítségükkel kereshetsz, validálhatsz, szűrhetsz és cserélhetsz szövegrészeket rendkívül hatékonyan, akár nagy méretű log fájlokban is.",
-      "info_regex_p2": "Gyakori felhasználási területei: e-mail cím és telefonszám validáció, dátum formátum ellenőrzés, HTML tag-ek kinyerése, log fájlok szűrése, kódrefaktorálás IDE-kben, és input mezők ellenőrzése webes űrlapokon. A JavaScript, Python, Java és szinte minden modern nyelv beépített regex támogatással rendelkezik.",
-      "info_regex_p3": "Ez az eszköz valós időben, színes kiemeléssel mutatja a találatokat, és támogatja az összes JavaScript regex flag-et (global, case-insensitive, multiline, dotAll, unicode, sticky). Így azonnal láthatod, ha a mintád helyes, mielőtt beillesztenéd a produkciós kódodba.",
-      "info_markdown_title": "Miért népszerű a Markdown?",
-      "info_markdown_p1": "A Markdown egy könnyűsúlyú jelölőnyelv, amelyet John Gruber 2004-ben alkotott meg. Célja, hogy olvasható, nyers formában is tiszta szövegként írható legyen, majd egyszerűen strukturált HTML-re konvertálható. A szintaxis minimális, így a tartalomra koncentrálhatsz a formázás helyett.",
-      "info_markdown_p2": "A GitHub README fájlok, dokumentációk (GitBook, Docusaurus), blogbejegyzések (Jekyll, Hugo), jegyzetelő alkalmazások (Notion, Obsidian) és chat üzenetek (Discord, Slack) alapértelmezett vagy támogatott formátuma. A .md kiterjesztés ma már szinonimája a fejlesztői dokumentációnak.",
-      "info_markdown_p3": "Ez az előnézeti eszköz GitHub-stílusú CSS renderelést biztosít, beleértve a kódblokkokat, táblázatokat, idézeteket és listákat. Így pontosan láthatod, hogyan fog kinézni a dokumentumod publikálás előtt, és gyorsan javíthatod a szintaktikai hibákat.",
-    },
+      "file_placeholder": "Válassz fájlt..."
+},
     en: {
       "app_title": "DevTools",
       "meta_title": "DevTools — Developer Toolkit",
@@ -1806,40 +1726,8 @@
       "toast_no_uuid": "Nothing to copy",
       "error_json": "Invalid JSON",
       "label_quantity": "Quantity",
-      
-      "info_jsonformatter_title": "Why is a JSON formatter useful?",
-      "info_jsonformatter_p1": "JSON (JavaScript Object Notation) is the most widely used data interchange format in web applications. It is suitable for API responses, configuration files, and NoSQL database storage alike. However, raw, minified JSON is difficult to read with the naked eye.",
-      "info_jsonformatter_p2": "This tool automatically adds indentation and colorful syntax highlighting to the structure, so you can quickly spot missing commas, brackets, or quotes. Use it for debugging REST API responses, checking configurations, or learning.",
-      "info_jsonformatter_p3": "The validator function provides line-level error reporting, so you can find syntactic problems in moments without having to launch a separate IDE.",
-      "info_jsonxml_title": "When do you need JSON and XML conversion?",
-      "info_jsonxml_p1": "Most modern REST APIs and microservices use JSON, but many legacy enterprise systems, SOAP web services, and XML-based configurations (e.g., Maven, AndroidManifest, SVG) still rely on XML.",
-      "info_jsonxml_p2": "This tool enables fast, bidirectional conversion between the two formats without installing additional software or command-line tools. It is ideal for integration tasks, data migration, and modernizing older systems.",
-      "info_jsonxml_p3": "It is important to note that XML attributes and namespaces are not automatically handled separately — you get simplified but fast conversion that is perfectly sufficient for most daily tasks.",
-      "info_base64_title": "What is Base64 encoding?",
-      "info_base64_p1": "Base64 is a method of representing binary data in text form, primarily used in places where only ASCII text content can be safely transmitted. The 64-character alphabet (A–Z, a–z, 0–9, +, /) can represent any binary information.",
-      "info_base64_p2": "Common applications include MIME encoding of e-mail attachments, inline images in CSS or HTML (data URI scheme), and files and tokens sent in REST APIs. Developers encounter Base64 strings daily in JWT tokens and data URLs.",
-      "info_base64_p3": "This tool can quickly encode and decode both text and local files. The file encode function automatically detects the MIME type, so it is ready to be inserted into a web environment.",
-      "info_urlcodec_title": "When do you need to encode or decode a URL?",
-      "info_urlcodec_p1": "In URLs, certain characters — such as spaces, accented letters, slashes, or ampersands — cannot appear in raw form because the browser or server may misinterpret the address structure. Standard encodeURIComponent encoding ensures correct interpretation.",
-      "info_urlcodec_p2": "Use this tool to prepare query parameters for API calls, assemble complex search URLs, or securely transmit form data. The decoder restores the original, readable text from an encoded link.",
-      "info_urlcodec_p3": "Especially useful for both frontend and backend developers who frequently work with OAuth redirect URIs, deep links, and query strings.",
-      "info_uuid_title": "What is a UUID and when is it used?",
-      "info_uuid_p1": "A UUID (Universally Unique Identifier) is a 128-bit identifier that is statistically guaranteed to remain unique even globally in distributed systems. Version 4 is generated completely randomly using cryptographically secure algorithms.",
-      "info_uuid_p2": "Developers use them as database primary keys (PostgreSQL, MongoDB), session identifiers, file names, or entity identifiers in microservices. The advantage of UUIDs is that they can be generated offline without a centralized counter.",
-      "info_uuid_p3": "This tool can generate up to a hundred unique identifiers at once, and you can copy all of them to the clipboard with one click. Perfect for generating test data and building prototypes.",
-      "info_jwt_title": "How does a JSON Web Token work?",
-      "info_jwt_p1": "JWT (JSON Web Token) is an open standard (RFC 7519) that provides compact and self-contained information transmission between parties. It consists of three dot-separated parts: header (algorithm and token type), payload (claims), and signature (digital signature).",
-      "info_jwt_p2": "It is often used for authentication and authorization in modern web and mobile applications. The server signs the token with its secret key, and the client sends it with every request. The server verifies the signature, then reads the user permissions and expiration time from the payload.",
-      "info_jwt_p3": "This tool decodes the Base64Url-encoded header and payload of the token, so you can quickly check the expiration time (exp), issuer (iss), and other claims without importing a separate JWT library into your project.",
-      "info_regex_title": "What is a regular expression?",
-      "info_regex_p1": "Regular expressions (regex or regexp) are formal languages used to describe text patterns. With their help, you can search, validate, filter, and replace text extremely efficiently, even in large log files.",
-      "info_regex_p2": "Common use cases: email and phone number validation, date format checking, HTML tag extraction, log file filtering, IDE code refactoring, and input field validation in web forms. JavaScript, Python, Java, and almost every modern language have built-in regex support.",
-      "info_regex_p3": "This tool shows matches in real time with color highlighting and supports all JavaScript regex flags (global, case-insensitive, multiline, dotAll, unicode, sticky). So you can immediately see if your pattern is correct before inserting it into production code.",
-      "info_markdown_title": "Why is Markdown so popular?",
-      "info_markdown_p1": "Markdown is a lightweight markup language created by John Gruber in 2004. Its goal is to be readable as clean text in raw form, and easily convertible to structured HTML. The syntax is minimal, so you can focus on content rather than formatting.",
-      "info_markdown_p2": "It is the default or supported format for GitHub README files, documentation (GitBook, Docusaurus), blog posts (Jekyll, Hugo), note-taking apps (Notion, Obsidian), and chat messages (Discord, Slack). The .md extension is now synonymous with developer documentation.",
-      "info_markdown_p3": "This preview tool provides GitHub-style CSS rendering, including code blocks, tables, blockquotes, and lists. So you can see exactly how your document will look before publishing, and quickly fix any syntax errors.",
-    }
+      "file_placeholder": "Choose a file..."
+}
   },
   lang: 'hu',
   t(k) { return this.dict[this.lang][k] || k; },
