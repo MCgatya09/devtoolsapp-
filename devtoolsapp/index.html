@@ -30,6 +30,10 @@
   <link rel="manifest"
     href="data:application/json;base64,eyJuYW1lIjoiRGV2VG9vbHMiLCJzaG9ydF9uYW1lIjoiRGV2VG9vbHMiLCJzdGFydF91cmwiOiIuIiwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiIzBkMTExNyIsInRoZW1lX2NvbG9yIjoiIzE2MWIyMiJ9">
 
+  <!-- Preconnect Google AdSense -->
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -46,6 +50,14 @@
       "priceCurrency": "HUF"
     }
   }
+  </script>
+
+  <!-- Google AdSense – lazy loaded a first interaction-re -->
+  <script>
+    function loadAdSense() { var s = document.createElement('script'); s.async = true; s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5325098230931001"; s.crossOrigin = "anonymous"; document.head.appendChild(s); }
+    window.addEventListener('load', function () { setTimeout(loadAdSense, 1500); });
+    document.addEventListener('scroll', loadAdSense, { once: true, passive: true });
+    document.addEventListener('click', loadAdSense, { once: true, passive: true });
   </script>
 
   <style>
@@ -130,7 +142,7 @@
       align-items: center;
       justify-content: center;
       font-size: 0.75rem;
-      min-height: 64px;
+      min-height: 90px;
       border-radius: var(--radius);
       width: 100%;
       max-width: 728px;
@@ -140,12 +152,13 @@
     .ad-header .ad-placeholder {
       margin: 0 0 0 auto;
       width: 468px;
-      height: 56px;
-      min-height: auto;
+      height: 60px;
+      min-height: 60px;
     }
 
     .ad-footer {
       margin: 24px auto;
+      min-height: 90px;
     }
 
     /* privacy badge */
@@ -164,9 +177,19 @@
       gap: 6px;
       z-index: 99;
     }
-    .privacy-badge svg { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
+
+    .privacy-badge svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
     @media (max-width: 768px) {
-      .privacy-badge { position: relative; top: 0; }
+      .privacy-badge {
+        position: relative;
+        top: 0;
+      }
     }
 
     /* ===========================================
@@ -257,6 +280,8 @@
 
     .tool-section.active {
       display: block;
+      content-visibility: auto;
+      contain-intrinsic-size: auto 600px;
     }
 
     @keyframes fadeIn {
@@ -735,7 +760,8 @@
   <noscript>
     <div style="padding:20px; background:#161b22; color:#c9d1d9; border-bottom:1px solid #30363d;">
       <h2>DevTools — Fejlesztői Eszköztár</h2>
-      <p>Az oldal JavaScript-et használ a működéséhez. Kérlek engedélyezd a JavaScript-et a böngésződben, vagy használd az alábbi eszközöket:</p>
+      <p>Az oldal JavaScript-et használ a működéséhez. Kérlek engedélyezd a JavaScript-et a böngésződben, vagy használd
+        az alábbi eszközöket:</p>
       <ul>
         <li><a href="https://jsonformatter.org/" target="_blank" rel="noopener">JSON Formatter</a></li>
         <li><a href="https://www.base64decode.org/" target="_blank" rel="noopener">Base64 Decode</a></li>
@@ -750,8 +776,10 @@
   <header class="page-header">
     <h1 data-i18n="app_title">DevTools</h1>
     <div class="lang-switch" style="display:flex;gap:8px;align-items:center;margin-left:auto;">
-      <button id="lang-hu" class="btn" style="padding:4px 10px;font-size:0.75rem;" onclick="I18n.setLang('hu')" data-i18n="lang_hu">HU</button>
-      <button id="lang-en" class="btn" style="padding:4px 10px;font-size:0.75rem;" onclick="I18n.setLang('en')" data-i18n="lang_en">EN</button>
+      <button id="lang-hu" class="btn" style="padding:4px 10px;font-size:0.75rem;" onclick="I18n.setLang('hu')"
+        data-i18n="lang_hu">HU</button>
+      <button id="lang-en" class="btn" style="padding:4px 10px;font-size:0.75rem;" onclick="I18n.setLang('en')"
+        data-i18n="lang_en">EN</button>
     </div>
     <div class="header-ad">
       <div class="ad-placeholder">Hirdetés (AdSense)</div>
@@ -759,13 +787,15 @@
   </header>
 
   <div class="privacy-badge">
-    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <svg viewBox="0 0 24 24" width="14" height="14" role="img" aria-hidden="true">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+    </svg>
     <span data-i18n="privacy_text">100% kliensoldali — az adataid nem hagyják el a böngésződet</span>
   </div>
 
   <nav class="sidebar" aria-label="Eszközök">
-  <a href="/jsonformatter" class="nav-item active" data-tool="jsonformatter" title="JSON Formatter">
-      <svg viewBox="0 0 24 24">
+    <a href="/jsonformatter" class="nav-item active" data-tool="jsonformatter" title="JSON Formatter">
+      <svg viewBox="0 0 24 24" width="22" height="22" role="img" aria-hidden="true">
         <polyline points="16 18 22 12 16 6"></polyline>
         <polyline points="8 6 2 12 8 18"></polyline>
       </svg>
@@ -845,7 +875,8 @@
     <section id="tool-jsonformatter" class="tool-section active">
       <header class="tool-header">
         <h2 data-i18n="jsonformatter_title">JSON Formatter & Validator</h2>
-        <p data-i18n="jsonformatter_desc">Illeszd be a JSON-t, majd formázd szépen vagy ellenőrizd a szintaxist. A hibák sor számmal jelennek meg.</p>
+        <p data-i18n="jsonformatter_desc">Illeszd be a JSON-t, majd formázd szépen vagy ellenőrizd a szintaxist. A hibák
+          sor számmal jelennek meg.</p>
       </header>
       <div class="card">
         <div class="card-title" data-i18n="card_input">Input</div>
@@ -866,6 +897,22 @@
         <div class="card-title" style="color:var(--danger)" data-i18n="card_error">Hiba</div>
         <pre id="jf-error" style="color:var(--danger)"></pre>
       </div>
+
+      <div class="card tool-info">
+        <h3 style="font-size:1rem;margin-bottom:8px;color:var(--accent);" data-i18n="info_jsonformatter_title">Miért
+          hasznos a JSON formázó?</h3>
+        <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:10px;"
+          data-i18n="info_jsonformatter_p1">A JSON (JavaScript Object Notation) a webes alkalmazások leggyakrabban
+          használt adatcsere-formátuma. API válaszok, konfigurációs fájlok és NoSQL adatbázisok tárolására egyaránt
+          alkalmas. A nyers, tömörített JSON azonban nehezen olvasható emberi szemmel.</p>
+        <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:10px;"
+          data-i18n="info_jsonformatter_p2">Ez az eszköz automatikusan behúzásokat és színes szintaxis kiemelést ad a
+          struktúrának, így gyorsan észreveheted a hiányzó vesszőket, zárójeleket vagy idézőjeleket. Használd REST API
+          válaszok debuggolásához, konfigurációk ellenőrzéséhez, vagy tanuláshoz.</p>
+        <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);" data-i18n="info_jsonformatter_p3">A
+          validátor funkció sor-szintű hibajelzést ad, így pillanatok alatt megtalálod a szintaktikai problémákat
+          anélkül, hogy külön IDE-t kellene indítanod.</p>
+      </div>
     </section>
 
     <!-- ===========================================
@@ -874,7 +921,8 @@
     <section id="tool-jsonxml" class="tool-section">
       <header class="tool-header">
         <h2 data-i18n="jsonxml_title">JSON ↔ XML Converter</h2>
-        <p data-i18n="jsonxml_desc">Konvertálj JSON-t XML-be és fordítva. Figyelem: az XML attribútumok nem kerülnek külön kezelésre.</p>
+        <p data-i18n="jsonxml_desc">Konvertálj JSON-t XML-be és fordítva. Figyelem: az XML attribútumok nem kerülnek
+          külön kezelésre.</p>
       </header>
       <div class="card">
         <div class="card-title" data-i18n="card_input">Input</div>
@@ -890,6 +938,22 @@
         <pre id="jx-output"></pre>
         <button class="copy-btn" onclick="Utils.copyFrom('jx-output')" data-i18n="btn_copy">Másolás</button>
       </div>
+
+      <div class="card tool-info">
+        <h3 style="font-size:1rem;margin-bottom:8px;color:var(--accent);" data-i18n="info_jsonxml_title">Mikor van
+          szükség JSON és XML konvertálásra?</h3>
+        <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:10px;"
+          data-i18n="info_jsonxml_p1">A modern REST API-k és microservice-ek többsége JSON-t használ, de sok legacy
+          vállalati rendszer, SOAP webszolgáltatás és XML-alapú konfiguráció (pl. Maven, AndroidManifest, SVG) még
+          mindig XML-re támaszkodik.</p>
+        <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:10px;"
+          data-i18n="info_jsonxml_p2">Ez az eszköz gyors, kétirányú átalakítást tesz lehetővé a két formátum között
+          anélkül, hogy külön szoftvert vagy parancssori eszközt kellene telepítened. Ideális integrációs feladatokhoz,
+          adatmigrációhoz és régi rendszerek modernizálásához.</p>
+        <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);" data-i18n="info_jsonxml_p3">Fontos
+          tudni, hogy az XML attribútumok és névterek (namespaces) nem kerülnek automatikusan külön kezelésre —
+          egyszerűsített, de gyors konvertálást kapsz, ami a legtöbb napi feladathoz tökéletesen elegendő.</p>
+      </div>
     </section>
 
     <!-- ===========================================
@@ -902,7 +966,8 @@
       </header>
       <div class="card">
         <div class="card-title" data-i18n="card_text">Szöveg</div>
-        <textarea id="b64-input" placeholder="Szöveg..." data-i18n-placeholder="ph_text" style="min-height:80px"></textarea>
+        <textarea id="b64-input" placeholder="Szöveg..." data-i18n-placeholder="ph_text"
+          style="min-height:80px"></textarea>
         <div class="btn-row">
           <button class="primary run-btn" onclick="Base64.encodeText()" data-i18n="btn_encode">Encode</button>
           <button class="primary" onclick="Base64.decodeText()" data-i18n="btn_decode">Decode</button>
@@ -924,6 +989,22 @@
         <pre id="b64-output"></pre>
         <button class="copy-btn" onclick="Utils.copyFrom('b64-output')" data-i18n="btn_copy">Másolás</button>
       </div>
+
+      <div class="card tool-info">
+        <h3 style="font-size:1rem;margin-bottom:8px;color:var(--accent);" data-i18n="info_base64_title">Mi az a Base64
+          kódolás?</h3>
+        <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:10px;"
+          data-i18n="info_base64_p1">A Base64 egy bináris adat szöveges ábrázolási módja, amelyet elsősorban olyan
+          helyeken használnak, ahol csak ASCII szöveges tartalom továbbítható biztonságosan. A 64 karakteres ábécé (A–Z,
+          a–z, 0–9, +, /) minden bináris információt reprezentálni képes.</p>
+        <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:10px;"
+          data-i18n="info_base64_p2">Gyakori alkalmazási területei közé tartozik az e-mail mellékletek MIME kódolása, a
+          CSS-ben vagy HTML-ben inline használt képek (data URI scheme), valamint REST API-kban küldött fájlok és
+          tokenek. Fejlesztők naponta találkoznak Base64 stringekkel JWT tokenekben és adatURL-ekben.</p>
+        <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);" data-i18n="info_base64_p3">Ez az
+          eszköz szöveget és helyi fájlokat egyaránt képes gyorsan kódolni és visszafejteni. A fájl encode funkció
+          automatikusan felismeri a MIME típust, így készen áll a beillesztésre webes környezetbe.</p>
+      </div>
     </section>
 
     <!-- ===========================================
@@ -936,7 +1017,8 @@
       </header>
       <div class="card">
         <div class="card-title" data-i18n="card_text">Szöveg</div>
-        <textarea id="url-input" placeholder="Szöveg..." data-i18n-placeholder="ph_text" style="min-height:80px"></textarea>
+        <textarea id="url-input" placeholder="Szöveg..." data-i18n-placeholder="ph_text"
+          style="min-height:80px"></textarea>
         <div class="btn-row">
           <button class="primary run-btn" onclick="UrlCodec.encode()" data-i18n="btn_encode">Encode</button>
           <button class="primary" onclick="UrlCodec.decode()" data-i18n="btn_decode">Decode</button>
@@ -947,6 +1029,22 @@
         <div class="card-title" data-i18n="card_result">Eredmény</div>
         <pre id="url-output"></pre>
         <button class="copy-btn" onclick="Utils.copyFrom('url-output')" data-i18n="btn_copy">Másolás</button>
+      </div>
+
+      <div class="card tool-info">
+        <h3 style="font-size:1rem;margin-bottom:8px;color:var(--accent);" data-i18n="info_urlcodec_title">Mikor kell
+          URL-t kódolni vagy dekódolni?</h3>
+        <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:10px;"
+          data-i18n="info_urlcodec_p1">Az URL-ekben bizonyos karakterek — mint a szóköz, az ékezetes betűk, a perjel
+          vagy az ampersand — nem szerepelhetnek nyers formában, mert félreértelmezhetik a böngésző vagy a szerver a cím
+          szerkezetét. Az encodeURIComponent szabvány szerinti kódolása biztosítja a helyes értelmezést.</p>
+        <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:10px;"
+          data-i18n="info_urlcodec_p2">Használd ezt az eszközt API hívások query paramétereinek előkészítéséhez,
+          összetett keresési URL-ek összeállításához, vagy form adatok biztonságos továbbításához. A dekódoló funkcióval
+          visszaállíthatod az eredeti, olvasható szöveget egy kódolt linkből.</p>
+        <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);" data-i18n="info_urlcodec_p3">
+          Különösen hasznos frontend és backend fejlesztőknek egyaránt, akik gyakran dolgoznak OAuth redirect URI-kkel,
+          deep linkekkel és query string-ekkel.</p>
       </div>
     </section>
 
@@ -961,8 +1059,8 @@
       <div class="card">
         <div class="card-title" data-i18n="card_settings">Beállítások</div>
         <div class="btn-row" style="align-items:center;">
-          <label style="color:var(--text-secondary); font-size:0.8125rem;" data-i18n="label_quantity">Mennyiség: <input type="number"
-              id="uuid-count" value="5" min="1" max="100" style="width:70px; margin-left:6px;"></label>
+          <label style="color:var(--text-secondary); font-size:0.8125rem;" data-i18n="label_quantity">Mennyiség: <input
+              type="number" id="uuid-count" value="5" min="1" max="100" style="width:70px; margin-left:6px;"></label>
           <button class="primary run-btn" onclick="UuidGen.generate()" data-i18n="btn_generate">Generálás</button>
           <button class="btn" onclick="UuidGen.copyAll()" data-i18n="btn_copy_all">Összes másolása</button>
           <button class="danger" onclick="UuidGen.clear()" data-i18n="btn_clear">Clear</button>
@@ -972,6 +1070,22 @@
         <div class="card-title" data-i18n="card_result">Eredmény</div>
         <div id="uuid-output"></div>
       </div>
+
+      <div class="card tool-info">
+        <h3 style="font-size:1rem;margin-bottom:8px;color:var(--accent);" data-i18n="info_uuid_title">Mi az a UUID és
+          mikor használják?</h3>
+        <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:10px;"
+          data-i18n="info_uuid_p1">Az UUID (Universally Unique Identifier) egy 128 bites azonosító, amely
+          statisztikailag garantáltan egyedi marad még globálisan, elosztott rendszerekben is. A v4 verzió teljesen
+          véletlenszerűen generálódik kriptográfiailag biztonságos algoritmusokkal.</p>
+        <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:10px;"
+          data-i18n="info_uuid_p2">Fejlesztők adatbázis elsődleges kulcsokként (PostgreSQL, MongoDB), session
+          azonosítókként, fájlnévként, vagy mikroszolgáltatásokban entitás-azonosításhoz alkalmazzák. Az UUID-k előnye,
+          hogy offline is generálhatók anélkül, hogy centralizált számlálóra lenne szükség.</p>
+        <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);" data-i18n="info_uuid_p3">Ez az eszköz
+          egyszerre akár száz egyedi azonosítót is generálhat, és egy kattintással a vágólapra másolhatod az összeset.
+          Tökéletes tesztadatok előállításához és prototípusok építéséhez.</p>
+      </div>
     </section>
 
     <!-- ===========================================
@@ -980,7 +1094,8 @@
     <section id="tool-jwt" class="tool-section">
       <header class="tool-header">
         <h2 data-i18n="jwt_title">JWT Decoder</h2>
-        <p data-i18n="jwt_desc">Decodold a JSON Web Token header és payload részét. A szignatúra ellenőrzés nélkül jelenik meg.</p>
+        <p data-i18n="jwt_desc">Decodold a JSON Web Token header és payload részét. A szignatúra ellenőrzés nélkül
+          jelenik meg.</p>
       </header>
       <div class="card">
         <div class="card-title" data-i18n="card_token">Token</div>
@@ -1007,6 +1122,22 @@
           <button class="copy-btn" onclick="Utils.copyFrom('jwt-signature')" data-i18n="btn_copy">Másolás</button>
         </div>
       </div>
+
+      <div class="card tool-info">
+        <h3 style="font-size:1rem;margin-bottom:8px;color:var(--accent);" data-i18n="info_jwt_title">Hogyan működik a
+          JSON Web Token?</h3>
+        <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:10px;"
+          data-i18n="info_jwt_p1">A JWT (JSON Web Token) egy nyílt szabvány (RFC 7519), amely kompakt és önálló módon
+          biztosít információátvitelt a felek között. Három ponttal elválasztott részből áll: header (algoritmus és
+          token típus), payload (állítások / claims) és signature (digitális aláírás).</p>
+        <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:10px;"
+          data-i18n="info_jwt_p2">Gyakran használják autentikációhoz és autorizációhoz modern webes és mobil
+          alkalmazásokban. A szerver a titkos kulcsával aláírja a tokent, és a kliens minden kérésnél elküldi. A szerver
+          ellenőrzi az aláírást, majd a payloadból kiolvassa a felhasználói jogosultságokat és lejárati időt.</p>
+        <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);" data-i18n="info_jwt_p3">Ez az eszköz
+          dekódolja a token Base64Url kódolt header és payload részét, így gyorsan ellenőrizheted a lejárati időt (exp),
+          a kiállítót (iss) és az egyéb claim-eket anélkül, hogy külön JWT könyvtárat importálnál a projektedbe.</p>
+      </div>
     </section>
 
     <!-- ===========================================
@@ -1019,7 +1150,8 @@
       </header>
       <div class="card">
         <div class="card-title" data-i18n="card_pattern">Minta (Pattern)</div>
-        <input type="text" id="rx-pattern" placeholder="pl. [A-Za-z0-9]+" data-i18n-placeholder="ph_pattern" style="min-height:auto; margin-bottom:8px;">
+        <input type="text" id="rx-pattern" placeholder="pl. [A-Za-z0-9]+" data-i18n-placeholder="ph_pattern"
+          style="min-height:auto; margin-bottom:8px;">
         <div class="flag-box">
           <label><input type="checkbox" id="rx-g" checked> g (global)</label>
           <label><input type="checkbox" id="rx-i"> i (case-insensitive)</label>
@@ -1043,6 +1175,24 @@
         <div class="card-title" data-i18n="card_matches">Találatok</div>
         <div id="rx-details" style="font-size:0.8125rem;"></div>
       </div>
+
+      <div class="card tool-info">
+        <h3 style="font-size:1rem;margin-bottom:8px;color:var(--accent);" data-i18n="info_regex_title">Mi az a reguláris
+          kifejezés?</h3>
+        <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:10px;"
+          data-i18n="info_regex_p1">A reguláris kifejezések (regex vagy regexp) formális nyelvek, amelyek szövegminták
+          leírására szolgálnak. Segítségükkel kereshetsz, validálhatsz, szűrhetsz és cserélhetsz szövegrészeket
+          rendkívül hatékonyan, akár nagy méretű log fájlokban is.</p>
+        <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:10px;"
+          data-i18n="info_regex_p2">Gyakori felhasználási területei: e-mail cím és telefonszám validáció, dátum formátum
+          ellenőrzés, HTML tag-ek kinyerése, log fájlok szűrése, kódrefaktorálás IDE-kben, és input mezők ellenőrzése
+          webes űrlapokon. A JavaScript, Python, Java és szinte minden modern nyelv beépített regex támogatással
+          rendelkezik.</p>
+        <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);" data-i18n="info_regex_p3">Ez az
+          eszköz valós időben, színes kiemeléssel mutatja a találatokat, és támogatja az összes JavaScript regex flag-et
+          (global, case-insensitive, multiline, dotAll, unicode, sticky). Így azonnal láthatod, ha a mintád helyes,
+          mielőtt beillesztenéd a produkciós kódodba.</p>
+      </div>
     </section>
 
     <!-- ===========================================
@@ -1057,7 +1207,8 @@
         <div class="md-wrap">
           <div>
             <div class="card-title" data-i18n="card_input">Input</div>
-            <textarea id="md-input" placeholder="Írj Markdown-t..." data-i18n-placeholder="ph_markdown" style="min-height:380px;"></textarea>
+            <textarea id="md-input" placeholder="Írj Markdown-t..." data-i18n-placeholder="ph_markdown"
+              style="min-height:380px;"></textarea>
             <div class="btn-row">
               <button class="danger" onclick="MarkdownTool.clear()" data-i18n="btn_clear">Clear</button>
             </div>
@@ -1067,6 +1218,23 @@
             <div id="md-preview" class="md-preview"></div>
           </div>
         </div>
+      </div>
+
+      <div class="card tool-info">
+        <h3 style="font-size:1rem;margin-bottom:8px;color:var(--accent);" data-i18n="info_markdown_title">Miért népszerű
+          a Markdown?</h3>
+        <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:10px;"
+          data-i18n="info_markdown_p1">A Markdown egy könnyűsúlyú jelölőnyelv, amelyet John Gruber 2004-ben alkotott
+          meg. Célja, hogy olvasható, nyers formában is tiszta szövegként írható legyen, majd egyszerűen strukturált
+          HTML-re konvertálható. A szintaxis minimális, így a tartalomra koncentrálhatsz a formázás helyett.</p>
+        <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);margin-bottom:10px;"
+          data-i18n="info_markdown_p2">A GitHub README fájlok, dokumentációk (GitBook, Docusaurus), blogbejegyzések
+          (Jekyll, Hugo), jegyzetelő alkalmazások (Notion, Obsidian) és chat üzenetek (Discord, Slack) alapértelmezett
+          vagy támogatott formátuma. A .md kiterjesztés ma már szinonimája a fejlesztői dokumentációnak.</p>
+        <p style="font-size:0.875rem;line-height:1.7;color:var(--text-secondary);" data-i18n="info_markdown_p3">Ez az
+          előnézeti eszköz GitHub-stílusú CSS renderelést biztosít, beleértve a kódblokkokat, táblázatokat, idézeteket
+          és listákat. Így pontosan láthatod, hogyan fog kinézni a dokumentumod publikálás előtt, és gyorsan javíthatod
+          a szintaktikai hibákat.</p>
       </div>
     </section>
 
@@ -1225,7 +1393,7 @@
             data.description = d;
             data.url = currentUrl;
             jsonLd.textContent = JSON.stringify(data, null, 2);
-          } catch (e) {}
+          } catch (e) { }
         }
       },
 
@@ -1256,7 +1424,7 @@
               if (I18n.lang === 'en' && !href.startsWith('/en/')) {
                 href = '/en' + href;
               }
-              try { history.pushState(null, '', href); } catch (err) {}
+              try { history.pushState(null, '', href); } catch (err) { }
               const baseHref = href.replace('/en/', '/');
               const id = pathToId[baseHref] || 'tool-jsonformatter';
               Utils.showTool(id);
@@ -1523,19 +1691,19 @@
 
     /* AUTOSAVE */
     const Autosave = {
-      keys: ['jf-input','jx-input','b64-input','url-input','jwt-input','rx-pattern','rx-text','md-input'],
-      checkboxKeys: ['rx-g','rx-i','rx-m','rx-s','rx-u','rx-y'],
+      keys: ['jf-input', 'jx-input', 'b64-input', 'url-input', 'jwt-input', 'rx-pattern', 'rx-text', 'md-input'],
+      checkboxKeys: ['rx-g', 'rx-i', 'rx-m', 'rx-s', 'rx-u', 'rx-y'],
       init() {
         [...this.keys, ...this.checkboxKeys].forEach(k => {
           const el = document.getElementById(k);
-          if(!el) return;
+          if (!el) return;
           const v = localStorage.getItem('devtools-save-' + k);
-          if(v !== null) {
-            if(el.type === 'checkbox') el.checked = v === 'true';
+          if (v !== null) {
+            if (el.type === 'checkbox') el.checked = v === 'true';
             else el.value = v;
           }
           const ev = el.type === 'checkbox' ? 'change' : 'input';
-          el.addEventListener(ev, () => localStorage.setItem('devtools-save-' + k, el.type==='checkbox' ? el.checked : el.value));
+          el.addEventListener(ev, () => localStorage.setItem('devtools-save-' + k, el.type === 'checkbox' ? el.checked : el.value));
         });
       },
       clear() {
@@ -1545,241 +1713,305 @@
 
     /* I18N */
     const I18n = {
-  dict: {
-    hu: {
-      "app_title": "DevTools",
-      "meta_title": "DevTools — Fejlesztői Eszköztár",
-      "lang_hu": "HU",
-      "lang_en": "EN",
-      "lang_changed": "Nyelv módosítva!",
-      "privacy_text": "100% kliensoldali feldolgozás — az adatok soha nem hagyják el a böngészőt",
-      "nav_jsonformatter": "JSON Formatter",
-      "nav_jsonxml": "JSON ↔ XML",
-      "nav_base64": "Base64",
-      "nav_urlcodec": "URL Encode / Decode",
-      "nav_uuid": "UUID v4",
-      "nav_jwt": "JWT Decoder",
-      "nav_regex": "Regex Tester",
-      "nav_markdown": "Markdown Preview",
-      "jsonformatter_title": "JSON Formatter & Validator",
-      "jsonformatter_desc": "Illeszd be a JSON-t, majd formázd szépen vagy ellenőrizd a szintaxist. A hibák sor számmal jelennek meg.",
-      "jsonxml_title": "JSON ↔ XML Converter",
-      "jsonxml_desc": "Konvertálj JSON-t XML-be és fordítva. Figyelem: az XML attribútumok nem kerülnek külön kezelésre.",
-      "base64_title": "Base64 Encode / Decode",
-      "base64_desc": "Szöveg és fájl alapú Base64 kódolás és dekódolás.",
-      "urlcodec_title": "URL Encode / Decode",
-      "urlcodec_desc": "Kódold vagy dekódold az URL-eket és paramétereket.",
-      "uuid_title": "UUID v4 Generator",
-      "uuid_desc": "Generálj egyszerre több véletlenszerű UUID-t.",
-      "jwt_title": "JWT Decoder",
-      "jwt_desc": "Decodold a JSON Web Token header és payload részét. A szignatúra ellenőrzés nélkül jelenik meg.",
-      "regex_title": "Regex Tester",
-      "regex_desc": "Teszteld a reguláris kifejezéseidet valós időben.",
-      "markdown_title": "Markdown Preview",
-      "markdown_desc": "Valós idejű, GitHub-stílusú Markdown előnézet.",
-      "card_input": "Input",
-      "card_output": "Output",
-      "card_error": "Hiba",
-      "card_text": "Szöveg",
-      "card_file_encode": "Fájl (Encode)",
-      "card_result": "Eredmény",
-      "card_settings": "Beállítások",
-      "card_token": "Token",
-      "card_pattern": "Minta (Pattern)",
-      "card_testtext": "Tesztszöveg",
-      "card_highlight": "Kiemelés",
-      "card_matches": "Találatok",
-      "card_preview": "Előnézet",
-      "btn_format": "Formázás",
-      "btn_minify": "Minify",
-      "btn_validate": "Validálás",
-      "btn_clear": "Clear",
-      "btn_json_to_xml": "JSON → XML",
-      "btn_xml_to_json": "XML → JSON",
-      "btn_encode": "Encode",
-      "btn_decode": "Decode",
-      "btn_file_to_b64": "Fájl Base64-re",
-      "btn_generate": "Generálás",
-      "btn_copy_all": "Összes másolása",
-      "btn_decode_jwt": "Decodolás",
-      "btn_run_test": "Teszt futtatása",
-      "btn_copy": "Másolás",
-      "ph_json": "Illeszd be a JSON-t ide...",
-      "ph_jsonxml": "JSON vagy XML...",
-      "ph_text": "Szöveg...",
-      "ph_text_here": "Ide írd a szöveget...",
-      "ph_jwt": "Illeszd be a JWT-t...",
-      "ph_pattern": "pl. [A-Za-z0-9]+",
-      "ph_markdown": "Írj Markdown-t...",
-      "ph_quantity": "Mennyiség",
-      "flag_g": "g (global)",
-      "flag_i": "i (case-insensitive)",
-      "flag_m": "m (multiline)",
-      "flag_s": "s (dotAll)",
-      "flag_u": "u (unicode)",
-      "flag_y": "y (sticky)",
-      "toast_empty_input": "Üres input",
-      "toast_valid_json": "A JSON érvényes!",
-      "toast_copy_ok": "Vágólapra másolva!",
-      "toast_copy_fail": "Másolás sikertelen",
-      "toast_enter_jwt": "Adj meg egy JWT tokent",
-      "toast_enter_pattern": "Adj meg egy mintát",
-      "toast_enter_text": "Adj meg egy tesztszöveget",
-      "toast_uuid_copy": "Összes UUID másolva",
-      "toast_no_uuid": "Nincs UUID a vágólapra",
-      "error_json": "Érvénytelen JSON",
-      "label_quantity": "Mennyiség",
-      "file_placeholder": "Válassz fájlt..."
-},
-    en: {
-      "app_title": "DevTools",
-      "meta_title": "DevTools — Developer Toolkit",
-      "lang_hu": "HU",
-      "lang_en": "EN",
-      "lang_changed": "Language changed!",
-      "privacy_text": "100% client-side processing — your data never leaves the browser",
-      "nav_jsonformatter": "JSON Formatter",
-      "nav_jsonxml": "JSON ↔ XML",
-      "nav_base64": "Base64",
-      "nav_urlcodec": "URL Encode / Decode",
-      "nav_uuid": "UUID v4",
-      "nav_jwt": "JWT Decoder",
-      "nav_regex": "Regex Tester",
-      "nav_markdown": "Markdown Preview",
-      "jsonformatter_title": "JSON Formatter & Validator",
-      "jsonformatter_desc": "Paste JSON to format it nicely or validate syntax. Errors shown with line numbers.",
-      "jsonxml_title": "JSON ↔ XML Converter",
-      "jsonxml_desc": "Convert JSON to XML and vice versa. Note: XML attributes are not handled separately.",
-      "base64_title": "Base64 Encode / Decode",
-      "base64_desc": "Text and file-based Base64 encoding and decoding.",
-      "urlcodec_title": "URL Encode / Decode",
-      "urlcodec_desc": "Encode or decode URLs and parameters.",
-      "uuid_title": "UUID v4 Generator",
-      "uuid_desc": "Generate multiple random UUIDs at once.",
-      "jwt_title": "JWT Decoder",
-      "jwt_desc": "Decode the header and payload of a JSON Web Token. Signature is shown without verification.",
-      "regex_title": "Regex Tester",
-      "regex_desc": "Test your regular expressions in real time.",
-      "markdown_title": "Markdown Preview",
-      "markdown_desc": "Real-time GitHub-style Markdown preview.",
-      "card_input": "Input",
-      "card_output": "Output",
-      "card_error": "Error",
-      "card_text": "Text",
-      "card_file_encode": "File (Encode)",
-      "card_result": "Result",
-      "card_settings": "Settings",
-      "card_token": "Token",
-      "card_pattern": "Pattern",
-      "card_testtext": "Test Text",
-      "card_highlight": "Highlight",
-      "card_matches": "Matches",
-      "card_preview": "Preview",
-      "btn_format": "Format",
-      "btn_minify": "Minify",
-      "btn_validate": "Validate",
-      "btn_clear": "Clear",
-      "btn_json_to_xml": "JSON → XML",
-      "btn_xml_to_json": "XML → JSON",
-      "btn_encode": "Encode",
-      "btn_decode": "Decode",
-      "btn_file_to_b64": "File to Base64",
-      "btn_generate": "Generate",
-      "btn_copy_all": "Copy All",
-      "btn_decode_jwt": "Decode",
-      "btn_run_test": "Run Test",
-      "btn_copy": "Copy",
-      "ph_json": "Paste JSON here...",
-      "ph_jsonxml": "JSON or XML...",
-      "ph_text": "Text...",
-      "ph_text_here": "Type text here...",
-      "ph_jwt": "Paste JWT here...",
-      "ph_pattern": "e.g. [A-Za-z0-9]+",
-      "ph_markdown": "Write Markdown...",
-      "ph_quantity": "Quantity",
-      "flag_g": "g (global)",
-      "flag_i": "i (case-insensitive)",
-      "flag_m": "m (multiline)",
-      "flag_s": "s (dotAll)",
-      "flag_u": "u (unicode)",
-      "flag_y": "y (sticky)",
-      "toast_empty_input": "Empty input",
-      "toast_valid_json": "Valid JSON!",
-      "toast_copy_ok": "Copied to clipboard!",
-      "toast_copy_fail": "Copy failed",
-      "toast_enter_jwt": "Enter a JWT token",
-      "toast_enter_pattern": "Enter a pattern",
-      "toast_enter_text": "Enter test text",
-      "toast_uuid_copy": "All UUIDs copied",
-      "toast_no_uuid": "Nothing to copy",
-      "error_json": "Invalid JSON",
-      "label_quantity": "Quantity",
-      "file_placeholder": "Choose a file..."
-}
-  },
-  lang: 'hu',
-  t(k) { return this.dict[this.lang][k] || k; },
-  setLang(l) {
-    const currentPath = window.location.pathname;
-    let newPath = null;
-    if (l === 'en') {
-      if (!currentPath.startsWith('/en/')) {
-        newPath = '/en' + currentPath;
-      }
-      document.documentElement.lang = 'en';
-    } else {
-      if (currentPath.startsWith('/en/')) {
-        newPath = currentPath.replace('/en/', '/');
-      } else if (currentPath === '/en') {
-        newPath = '/';
-      }
-      document.documentElement.lang = 'hu';
-    }
-    if (newPath) {
-      try { history.pushState(null, '', newPath); } catch (e) {}
-    }
-    this.lang = l;
-    localStorage.setItem('devtools_lang', l);
-    this.apply();
-    Utils.toast(I18n.t('lang_changed'), 'success');
-  },
-  apply() {
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-      const key = el.getAttribute('data-i18n');
-      if (this.dict[this.lang][key]) {
-        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-          el.value = this.dict[this.lang][key];
-        } else if (el.tagName === 'TITLE') {
-          document.title = this.dict[this.lang][key];
-        } else {
-          el.textContent = this.dict[this.lang][key];
+      dict: {
+        hu: {
+          "app_title": "DevTools",
+          "meta_title": "DevTools — Fejlesztői Eszköztár",
+          "lang_hu": "HU",
+          "lang_en": "EN",
+          "lang_changed": "Nyelv módosítva!",
+          "privacy_text": "100% kliensoldali feldolgozás — az adatok soha nem hagyják el a böngészőt",
+          "nav_jsonformatter": "JSON Formatter",
+          "nav_jsonxml": "JSON ↔ XML",
+          "nav_base64": "Base64",
+          "nav_urlcodec": "URL Encode / Decode",
+          "nav_uuid": "UUID v4",
+          "nav_jwt": "JWT Decoder",
+          "nav_regex": "Regex Tester",
+          "nav_markdown": "Markdown Preview",
+          "jsonformatter_title": "JSON Formatter & Validator",
+          "jsonformatter_desc": "Illeszd be a JSON-t, majd formázd szépen vagy ellenőrizd a szintaxist. A hibák sor számmal jelennek meg.",
+          "jsonxml_title": "JSON ↔ XML Converter",
+          "jsonxml_desc": "Konvertálj JSON-t XML-be és fordítva. Figyelem: az XML attribútumok nem kerülnek külön kezelésre.",
+          "base64_title": "Base64 Encode / Decode",
+          "base64_desc": "Szöveg és fájl alapú Base64 kódolás és dekódolás.",
+          "urlcodec_title": "URL Encode / Decode",
+          "urlcodec_desc": "Kódold vagy dekódold az URL-eket és paramétereket.",
+          "uuid_title": "UUID v4 Generator",
+          "uuid_desc": "Generálj egyszerre több véletlenszerű UUID-t.",
+          "jwt_title": "JWT Decoder",
+          "jwt_desc": "Decodold a JSON Web Token header és payload részét. A szignatúra ellenőrzés nélkül jelenik meg.",
+          "regex_title": "Regex Tester",
+          "regex_desc": "Teszteld a reguláris kifejezéseidet valós időben.",
+          "markdown_title": "Markdown Preview",
+          "markdown_desc": "Valós idejű, GitHub-stílusú Markdown előnézet.",
+          "card_input": "Input",
+          "card_output": "Output",
+          "card_error": "Hiba",
+          "card_text": "Szöveg",
+          "card_file_encode": "Fájl (Encode)",
+          "card_result": "Eredmény",
+          "card_settings": "Beállítások",
+          "card_token": "Token",
+          "card_pattern": "Minta (Pattern)",
+          "card_testtext": "Tesztszöveg",
+          "card_highlight": "Kiemelés",
+          "card_matches": "Találatok",
+          "card_preview": "Előnézet",
+          "btn_format": "Formázás",
+          "btn_minify": "Minify",
+          "btn_validate": "Validálás",
+          "btn_clear": "Clear",
+          "btn_json_to_xml": "JSON → XML",
+          "btn_xml_to_json": "XML → JSON",
+          "btn_encode": "Encode",
+          "btn_decode": "Decode",
+          "btn_file_to_b64": "Fájl Base64-re",
+          "btn_generate": "Generálás",
+          "btn_copy_all": "Összes másolása",
+          "btn_decode_jwt": "Decodolás",
+          "btn_run_test": "Teszt futtatása",
+          "btn_copy": "Másolás",
+          "ph_json": "Illeszd be a JSON-t ide...",
+          "ph_jsonxml": "JSON vagy XML...",
+          "ph_text": "Szöveg...",
+          "ph_text_here": "Ide írd a szöveget...",
+          "ph_jwt": "Illeszd be a JWT-t...",
+          "ph_pattern": "pl. [A-Za-z0-9]+",
+          "ph_markdown": "Írj Markdown-t...",
+          "ph_quantity": "Mennyiség",
+          "flag_g": "g (global)",
+          "flag_i": "i (case-insensitive)",
+          "flag_m": "m (multiline)",
+          "flag_s": "s (dotAll)",
+          "flag_u": "u (unicode)",
+          "flag_y": "y (sticky)",
+          "toast_empty_input": "Üres input",
+          "toast_valid_json": "A JSON érvényes!",
+          "toast_copy_ok": "Vágólapra másolva!",
+          "toast_copy_fail": "Másolás sikertelen",
+          "toast_enter_jwt": "Adj meg egy JWT tokent",
+          "toast_enter_pattern": "Adj meg egy mintát",
+          "toast_enter_text": "Adj meg egy tesztszöveget",
+          "toast_uuid_copy": "Összes UUID másolva",
+          "toast_no_uuid": "Nincs UUID a vágólapra",
+          "error_json": "Érvénytelen JSON",
+          "label_quantity": "Mennyiség",
+
+          "info_jsonformatter_title": "Miért hasznos a JSON formázó?",
+          "info_jsonformatter_p1": "A JSON (JavaScript Object Notation) a webes alkalmazások leggyakrabban használt adatcsere-formátuma. API válaszok, konfigurációs fájlok és NoSQL adatbázisok tárolására egyaránt alkalmas. A nyers, tömörített JSON azonban nehezen olvasható emberi szemmel.",
+          "info_jsonformatter_p2": "Ez az eszköz automatikusan behúzásokat és színes szintaxis kiemelést ad a struktúrának, így gyorsan észreveheted a hiányzó vesszőket, zárójeleket vagy idézőjeleket. Használd REST API válaszok debuggolásához, konfigurációk ellenőrzéséhez, vagy tanuláshoz.",
+          "info_jsonformatter_p3": "A validátor funkció sor-szintű hibajelzést ad, így pillanatok alatt megtalálod a szintaktikai problémákat anélkül, hogy külön IDE-t kellene indítanod.",
+          "info_jsonxml_title": "Mikor van szükség JSON és XML konvertálásra?",
+          "info_jsonxml_p1": "A modern REST API-k és microservice-ek többsége JSON-t használ, de sok legacy vállalati rendszer, SOAP webszolgáltatás és XML-alapú konfiguráció (pl. Maven, AndroidManifest, SVG) még mindig XML-re támaszkodik.",
+          "info_jsonxml_p2": "Ez az eszköz gyors, kétirányú átalakítást tesz lehetővé a két formátum között anélkül, hogy külön szoftvert vagy parancssori eszközt kellene telepítened. Ideális integrációs feladatokhoz, adatmigrációhoz és régi rendszerek modernizálásához.",
+          "info_jsonxml_p3": "Fontos tudni, hogy az XML attribútumok és névterek (namespaces) nem kerülnek automatikusan külön kezelésre — egyszerűsített, de gyors konvertálást kapsz, ami a legtöbb napi feladathoz tökéletesen elegendő.",
+          "info_base64_title": "Mi az a Base64 kódolás?",
+          "info_base64_p1": "A Base64 egy bináris adat szöveges ábrázolási módja, amelyet elsősorban olyan helyeken használnak, ahol csak ASCII szöveges tartalom továbbítható biztonságosan. A 64 karakteres ábécé (A–Z, a–z, 0–9, +, /) minden bináris információt reprezentálni képes.",
+          "info_base64_p2": "Gyakori alkalmazási területei közé tartozik az e-mail mellékletek MIME kódolása, a CSS-ben vagy HTML-ben inline használt képek (data URI scheme), valamint REST API-kban küldött fájlok és tokenek. Fejlesztők naponta találkoznak Base64 stringekkel JWT tokenekben és adatURL-ekben.",
+          "info_base64_p3": "Ez az eszköz szöveget és helyi fájlokat egyaránt képes gyorsan kódolni és visszafejteni. A fájl encode funkció automatikusan felismeri a MIME típust, így készen áll a beillesztésre webes környezetbe.",
+          "info_urlcodec_title": "Mikor kell URL-t kódolni vagy dekódolni?",
+          "info_urlcodec_p1": "Az URL-ekben bizonyos karakterek — mint a szóköz, az ékezetes betűk, a perjel vagy az ampersand — nem szerepelhetnek nyers formában, mert félreértelmezhetik a böngésző vagy a szerver a cím szerkezetét. Az encodeURIComponent szabvány szerinti kódolása biztosítja a helyes értelmezést.",
+          "info_urlcodec_p2": "Használd ezt az eszközt API hívások query paramétereinek előkészítéséhez, összetett keresési URL-ek összeállításához, vagy form adatok biztonságos továbbításához. A dekódoló funkcióval visszaállíthatod az eredeti, olvasható szöveget egy kódolt linkből.",
+          "info_urlcodec_p3": "Különösen hasznos frontend és backend fejlesztőknek egyaránt, akik gyakran dolgoznak OAuth redirect URI-kkel, deep linkekkel és query string-ekkel.",
+          "info_uuid_title": "Mi az a UUID és mikor használják?",
+          "info_uuid_p1": "Az UUID (Universally Unique Identifier) egy 128 bites azonosító, amely statisztikailag garantáltan egyedi marad még globálisan, elosztott rendszerekben is. A v4 verzió teljesen véletlenszerűen generálódik kriptográfiailag biztonságos algoritmusokkal.",
+          "info_uuid_p2": "Fejlesztők adatbázis elsődleges kulcsokként (PostgreSQL, MongoDB), session azonosítókként, fájlnévként, vagy mikroszolgáltatásokban entitás-azonosításhoz alkalmazzák. Az UUID-k előnye, hogy offline is generálhatók anélkül, hogy centralizált számlálóra lenne szükség.",
+          "info_uuid_p3": "Ez az eszköz egyszerre akár száz egyedi azonosítót is generálhat, és egy kattintással a vágólapra másolhatod az összeset. Tökéletes tesztadatok előállításához és prototípusok építéséhez.",
+          "info_jwt_title": "Hogyan működik a JSON Web Token?",
+          "info_jwt_p1": "A JWT (JSON Web Token) egy nyílt szabvány (RFC 7519), amely kompakt és önálló módon biztosít információátvitelt a felek között. Három ponttal elválasztott részből áll: header (algoritmus és token típus), payload (állítások / claims) és signature (digitális aláírás).",
+          "info_jwt_p2": "Gyakran használják autentikációhoz és autorizációhoz modern webes és mobil alkalmazásokban. A szerver a titkos kulcsával aláírja a tokent, és a kliens minden kérésnél elküldi. A szerver ellenőrzi az aláírást, majd a payloadból kiolvassa a felhasználói jogosultságokat és lejárati időt.",
+          "info_jwt_p3": "Ez az eszköz dekódolja a token Base64Url kódolt header és payload részét, így gyorsan ellenőrizheted a lejárati időt (exp), a kiállítót (iss) és az egyéb claim-eket anélkül, hogy külön JWT könyvtárat importálnál a projektedbe.",
+          "info_regex_title": "Mi az a reguláris kifejezés?",
+          "info_regex_p1": "A reguláris kifejezések (regex vagy regexp) formális nyelvek, amelyek szövegminták leírására szolgálnak. Segítségükkel kereshetsz, validálhatsz, szűrhetsz és cserélhetsz szövegrészeket rendkívül hatékonyan, akár nagy méretű log fájlokban is.",
+          "info_regex_p2": "Gyakori felhasználási területei: e-mail cím és telefonszám validáció, dátum formátum ellenőrzés, HTML tag-ek kinyerése, log fájlok szűrése, kódrefaktorálás IDE-kben, és input mezők ellenőrzése webes űrlapokon. A JavaScript, Python, Java és szinte minden modern nyelv beépített regex támogatással rendelkezik.",
+          "info_regex_p3": "Ez az eszköz valós időben, színes kiemeléssel mutatja a találatokat, és támogatja az összes JavaScript regex flag-et (global, case-insensitive, multiline, dotAll, unicode, sticky). Így azonnal láthatod, ha a mintád helyes, mielőtt beillesztenéd a produkciós kódodba.",
+          "info_markdown_title": "Miért népszerű a Markdown?",
+          "info_markdown_p1": "A Markdown egy könnyűsúlyú jelölőnyelv, amelyet John Gruber 2004-ben alkotott meg. Célja, hogy olvasható, nyers formában is tiszta szövegként írható legyen, majd egyszerűen strukturált HTML-re konvertálható. A szintaxis minimális, így a tartalomra koncentrálhatsz a formázás helyett.",
+          "info_markdown_p2": "A GitHub README fájlok, dokumentációk (GitBook, Docusaurus), blogbejegyzések (Jekyll, Hugo), jegyzetelő alkalmazások (Notion, Obsidian) és chat üzenetek (Discord, Slack) alapértelmezett vagy támogatott formátuma. A .md kiterjesztés ma már szinonimája a fejlesztői dokumentációnak.",
+          "info_markdown_p3": "Ez az előnézeti eszköz GitHub-stílusú CSS renderelést biztosít, beleértve a kódblokkokat, táblázatokat, idézeteket és listákat. Így pontosan láthatod, hogyan fog kinézni a dokumentumod publikálás előtt, és gyorsan javíthatod a szintaktikai hibákat.",
+        },
+        en: {
+          "app_title": "DevTools",
+          "meta_title": "DevTools — Developer Toolkit",
+          "lang_hu": "HU",
+          "lang_en": "EN",
+          "lang_changed": "Language changed!",
+          "privacy_text": "100% client-side processing — your data never leaves the browser",
+          "nav_jsonformatter": "JSON Formatter",
+          "nav_jsonxml": "JSON ↔ XML",
+          "nav_base64": "Base64",
+          "nav_urlcodec": "URL Encode / Decode",
+          "nav_uuid": "UUID v4",
+          "nav_jwt": "JWT Decoder",
+          "nav_regex": "Regex Tester",
+          "nav_markdown": "Markdown Preview",
+          "jsonformatter_title": "JSON Formatter & Validator",
+          "jsonformatter_desc": "Paste JSON to format it nicely or validate syntax. Errors shown with line numbers.",
+          "jsonxml_title": "JSON ↔ XML Converter",
+          "jsonxml_desc": "Convert JSON to XML and vice versa. Note: XML attributes are not handled separately.",
+          "base64_title": "Base64 Encode / Decode",
+          "base64_desc": "Text and file-based Base64 encoding and decoding.",
+          "urlcodec_title": "URL Encode / Decode",
+          "urlcodec_desc": "Encode or decode URLs and parameters.",
+          "uuid_title": "UUID v4 Generator",
+          "uuid_desc": "Generate multiple random UUIDs at once.",
+          "jwt_title": "JWT Decoder",
+          "jwt_desc": "Decode the header and payload of a JSON Web Token. Signature is shown without verification.",
+          "regex_title": "Regex Tester",
+          "regex_desc": "Test your regular expressions in real time.",
+          "markdown_title": "Markdown Preview",
+          "markdown_desc": "Real-time GitHub-style Markdown preview.",
+          "card_input": "Input",
+          "card_output": "Output",
+          "card_error": "Error",
+          "card_text": "Text",
+          "card_file_encode": "File (Encode)",
+          "card_result": "Result",
+          "card_settings": "Settings",
+          "card_token": "Token",
+          "card_pattern": "Pattern",
+          "card_testtext": "Test Text",
+          "card_highlight": "Highlight",
+          "card_matches": "Matches",
+          "card_preview": "Preview",
+          "btn_format": "Format",
+          "btn_minify": "Minify",
+          "btn_validate": "Validate",
+          "btn_clear": "Clear",
+          "btn_json_to_xml": "JSON → XML",
+          "btn_xml_to_json": "XML → JSON",
+          "btn_encode": "Encode",
+          "btn_decode": "Decode",
+          "btn_file_to_b64": "File to Base64",
+          "btn_generate": "Generate",
+          "btn_copy_all": "Copy All",
+          "btn_decode_jwt": "Decode",
+          "btn_run_test": "Run Test",
+          "btn_copy": "Copy",
+          "ph_json": "Paste JSON here...",
+          "ph_jsonxml": "JSON or XML...",
+          "ph_text": "Text...",
+          "ph_text_here": "Type text here...",
+          "ph_jwt": "Paste JWT here...",
+          "ph_pattern": "e.g. [A-Za-z0-9]+",
+          "ph_markdown": "Write Markdown...",
+          "ph_quantity": "Quantity",
+          "flag_g": "g (global)",
+          "flag_i": "i (case-insensitive)",
+          "flag_m": "m (multiline)",
+          "flag_s": "s (dotAll)",
+          "flag_u": "u (unicode)",
+          "flag_y": "y (sticky)",
+          "toast_empty_input": "Empty input",
+          "toast_valid_json": "Valid JSON!",
+          "toast_copy_ok": "Copied to clipboard!",
+          "toast_copy_fail": "Copy failed",
+          "toast_enter_jwt": "Enter a JWT token",
+          "toast_enter_pattern": "Enter a pattern",
+          "toast_enter_text": "Enter test text",
+          "toast_uuid_copy": "All UUIDs copied",
+          "toast_no_uuid": "Nothing to copy",
+          "error_json": "Invalid JSON",
+          "label_quantity": "Quantity",
+
+          "info_jsonformatter_title": "Why is a JSON formatter useful?",
+          "info_jsonformatter_p1": "JSON (JavaScript Object Notation) is the most widely used data interchange format in web applications. It is suitable for API responses, configuration files, and NoSQL database storage alike. However, raw, minified JSON is difficult to read with the naked eye.",
+          "info_jsonformatter_p2": "This tool automatically adds indentation and colorful syntax highlighting to the structure, so you can quickly spot missing commas, brackets, or quotes. Use it for debugging REST API responses, checking configurations, or learning.",
+          "info_jsonformatter_p3": "The validator function provides line-level error reporting, so you can find syntactic problems in moments without having to launch a separate IDE.",
+          "info_jsonxml_title": "When do you need JSON and XML conversion?",
+          "info_jsonxml_p1": "Most modern REST APIs and microservices use JSON, but many legacy enterprise systems, SOAP web services, and XML-based configurations (e.g., Maven, AndroidManifest, SVG) still rely on XML.",
+          "info_jsonxml_p2": "This tool enables fast, bidirectional conversion between the two formats without installing additional software or command-line tools. It is ideal for integration tasks, data migration, and modernizing older systems.",
+          "info_jsonxml_p3": "It is important to note that XML attributes and namespaces are not automatically handled separately — you get simplified but fast conversion that is perfectly sufficient for most daily tasks.",
+          "info_base64_title": "What is Base64 encoding?",
+          "info_base64_p1": "Base64 is a method of representing binary data in text form, primarily used in places where only ASCII text content can be safely transmitted. The 64-character alphabet (A–Z, a–z, 0–9, +, /) can represent any binary information.",
+          "info_base64_p2": "Common applications include MIME encoding of e-mail attachments, inline images in CSS or HTML (data URI scheme), and files and tokens sent in REST APIs. Developers encounter Base64 strings daily in JWT tokens and data URLs.",
+          "info_base64_p3": "This tool can quickly encode and decode both text and local files. The file encode function automatically detects the MIME type, so it is ready to be inserted into a web environment.",
+          "info_urlcodec_title": "When do you need to encode or decode a URL?",
+          "info_urlcodec_p1": "In URLs, certain characters — such as spaces, accented letters, slashes, or ampersands — cannot appear in raw form because the browser or server may misinterpret the address structure. Standard encodeURIComponent encoding ensures correct interpretation.",
+          "info_urlcodec_p2": "Use this tool to prepare query parameters for API calls, assemble complex search URLs, or securely transmit form data. The decoder restores the original, readable text from an encoded link.",
+          "info_urlcodec_p3": "Especially useful for both frontend and backend developers who frequently work with OAuth redirect URIs, deep links, and query strings.",
+          "info_uuid_title": "What is a UUID and when is it used?",
+          "info_uuid_p1": "A UUID (Universally Unique Identifier) is a 128-bit identifier that is statistically guaranteed to remain unique even globally in distributed systems. Version 4 is generated completely randomly using cryptographically secure algorithms.",
+          "info_uuid_p2": "Developers use them as database primary keys (PostgreSQL, MongoDB), session identifiers, file names, or entity identifiers in microservices. The advantage of UUIDs is that they can be generated offline without a centralized counter.",
+          "info_uuid_p3": "This tool can generate up to a hundred unique identifiers at once, and you can copy all of them to the clipboard with one click. Perfect for generating test data and building prototypes.",
+          "info_jwt_title": "How does a JSON Web Token work?",
+          "info_jwt_p1": "JWT (JSON Web Token) is an open standard (RFC 7519) that provides compact and self-contained information transmission between parties. It consists of three dot-separated parts: header (algorithm and token type), payload (claims), and signature (digital signature).",
+          "info_jwt_p2": "It is often used for authentication and authorization in modern web and mobile applications. The server signs the token with its secret key, and the client sends it with every request. The server verifies the signature, then reads the user permissions and expiration time from the payload.",
+          "info_jwt_p3": "This tool decodes the Base64Url-encoded header and payload of the token, so you can quickly check the expiration time (exp), issuer (iss), and other claims without importing a separate JWT library into your project.",
+          "info_regex_title": "What is a regular expression?",
+          "info_regex_p1": "Regular expressions (regex or regexp) are formal languages used to describe text patterns. With their help, you can search, validate, filter, and replace text extremely efficiently, even in large log files.",
+          "info_regex_p2": "Common use cases: email and phone number validation, date format checking, HTML tag extraction, log file filtering, IDE code refactoring, and input field validation in web forms. JavaScript, Python, Java, and almost every modern language have built-in regex support.",
+          "info_regex_p3": "This tool shows matches in real time with color highlighting and supports all JavaScript regex flags (global, case-insensitive, multiline, dotAll, unicode, sticky). So you can immediately see if your pattern is correct before inserting it into production code.",
+          "info_markdown_title": "Why is Markdown so popular?",
+          "info_markdown_p1": "Markdown is a lightweight markup language created by John Gruber in 2004. Its goal is to be readable as clean text in raw form, and easily convertible to structured HTML. The syntax is minimal, so you can focus on content rather than formatting.",
+          "info_markdown_p2": "It is the default or supported format for GitHub README files, documentation (GitBook, Docusaurus), blog posts (Jekyll, Hugo), note-taking apps (Notion, Obsidian), and chat messages (Discord, Slack). The .md extension is now synonymous with developer documentation.",
+          "info_markdown_p3": "This preview tool provides GitHub-style CSS rendering, including code blocks, tables, blockquotes, and lists. So you can see exactly how your document will look before publishing, and quickly fix any syntax errors.",
         }
+      },
+      lang: 'hu',
+      t(k) { return this.dict[this.lang][k] || k; },
+      setLang(l) {
+        const currentPath = window.location.pathname;
+        let newPath = null;
+        if (l === 'en') {
+          if (!currentPath.startsWith('/en/')) {
+            newPath = '/en' + currentPath;
+          }
+          document.documentElement.lang = 'en';
+        } else {
+          if (currentPath.startsWith('/en/')) {
+            newPath = currentPath.replace('/en/', '/');
+          } else if (currentPath === '/en') {
+            newPath = '/';
+          }
+          document.documentElement.lang = 'hu';
+        }
+        if (newPath) {
+          try { history.pushState(null, '', newPath); } catch (e) { }
+        }
+        this.lang = l;
+        localStorage.setItem('devtools_lang', l);
+        this.apply();
+        Utils.toast(I18n.t('lang_changed'), 'success');
+      },
+      apply() {
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.getAttribute('data-i18n');
+          if (this.dict[this.lang][key]) {
+            if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+              el.value = this.dict[this.lang][key];
+            } else if (el.tagName === 'TITLE') {
+              document.title = this.dict[this.lang][key];
+            } else {
+              el.textContent = this.dict[this.lang][key];
+            }
+          }
+        });
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+          const key = el.getAttribute('data-i18n-placeholder');
+          if (this.dict[this.lang][key]) {
+            el.placeholder = this.dict[this.lang][key];
+          }
+        });
+        document.querySelectorAll('[data-i18n-title]').forEach(el => {
+          const key = el.getAttribute('data-i18n-title');
+          if (this.dict[this.lang][key]) {
+            el.title = this.dict[this.lang][key];
+          }
+        });
+      },
+      init() {
+        const saved = localStorage.getItem('devtools_lang');
+        if (saved) { this.lang = saved; }
+        // URL path alapján felülírás
+        const path = window.location.pathname;
+        if (path.startsWith('/en/')) { this.lang = 'en'; }
+        if (this.lang === 'en') document.documentElement.lang = 'en';
+        else document.documentElement.lang = 'hu';
+        this.apply();
       }
-    });
-    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-      const key = el.getAttribute('data-i18n-placeholder');
-      if (this.dict[this.lang][key]) {
-        el.placeholder = this.dict[this.lang][key];
-      }
-    });
-    document.querySelectorAll('[data-i18n-title]').forEach(el => {
-      const key = el.getAttribute('data-i18n-title');
-      if (this.dict[this.lang][key]) {
-        el.title = this.dict[this.lang][key];
-      }
-    });
-  },
-  init() {
-    const saved = localStorage.getItem('devtools_lang');
-    if (saved) { this.lang = saved; }
-    // URL path alapján felülírás
-    const path = window.location.pathname;
-    if (path.startsWith('/en/')) { this.lang = 'en'; }
-    if (this.lang === 'en') document.documentElement.lang = 'en';
-    else document.documentElement.lang = 'hu';
-    this.apply();
-  }
-};
+    };
 
     /* INIT & SERVICE WORKER */
     document.addEventListener('DOMContentLoaded', function () {
@@ -1793,4 +2025,5 @@
     });
   </script>
 </body>
+
 </html>
