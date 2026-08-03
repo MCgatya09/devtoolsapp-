@@ -1,0 +1,24 @@
+# DevTools — Fejlesztői Eszköztár
+
+> Ingyenes, 100% kliensoldali fejlesztői eszköztár JSON formázáshoz, Base64, UUID, JWT és egyebekhez.
+
+## Eszközök
+
+- [JSON Formatter & Validator](https://devtoolsapp.com/jsonformatter)
+- [JSON ↔ XML Converter](https://devtoolsapp.com/jsonxml)
+- [Base64 Encode / Decode](https://devtoolsapp.com/base64)
+- [URL Encode / Decode](https://devtoolsapp.com/urlcodec)
+- [UUID v4 Generator](https://devtoolsapp.com/uuid)
+- [JWT Decoder](https://devtoolsapp.com/jwt)
+- [Regex Tester](https://devtoolsapp.com/regex)
+- [Markdown Preview](https://devtoolsapp.com/markdown)
+
+## Rólunk
+
+A DevTools egy ingyenes, böngészőben futó fejlesztői eszköztár. Minden feldolgozás kliensoldalon történik — az adatok soha nem hagyják el a böngészőt. Támogatja a magyar és angol nyelvet.
+
+## Linkek
+
+- [Főoldal](https://devtoolsapp.com/)
+- [Angol verzió](https://devtoolsapp.com/en/)
+- [GitHub](https://github.com/bodor/devtoolsapp)
